@@ -50,7 +50,7 @@ var request = require('request');
 passport.use(new CourseraStrategy({
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: "http://cupiexamenes.herokuapp.com/lti",
+        callbackURL: "http://cupiexamenes.herokuapp.com/lti/callback",
         profileFields: ['timezone', 'locale', 'privacy']
     },
     function(accessToken, profile, done) {
@@ -85,12 +85,12 @@ passport.deserializeUser(function(id, done) {
         });
 });
 
-router.get('/lti2',
+router.get('/lti',
     passport.authenticate('coursera', {
         scope: ['view_profile']
     }));
 
-router.get('/lti2',
+router.get('/lti/callback',
     passport.authenticate('coursera', {
         failureRedirect: '/login'
     }),
@@ -105,7 +105,7 @@ router.post('/lti', function(req, res) {
     console.log(req.body);
     res.send("OK");
 });
-router.get('/lti', function(req, res) {
+router.get('/lti2', function(req, res) {
     var code = req.query.code;
 
     console.log("CODE coursera", code);
