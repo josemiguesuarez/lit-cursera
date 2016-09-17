@@ -15,26 +15,40 @@ var LocalStrategy = require('passport-local').Strategy;
 var lti = require ('ims-lti');
 
 //TODO identify if i should errase this code:
+
+var request = require('request');
+
+
+
+/*request({
+  url: 'https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Fcupiexamenes.herokuapp.com&scope=view_profile&state=csrf_code1234',
+  method: 'GET'
+}, function(err, res) {
+  console.log("Access Token:", res.body);
+});*/
+
+//var provider = lti.Provider (consumer_key, consumer_secret)
+
+/*Client ID: _ZebnnLCwq5CtJaZUnaFiQ
+Secret Key: TmzslydSk7z5Wl2gOCNDsg
+Auth Method: OAuth2
+Redirect URIs:
+https://cupiexamenes.herokuapp.com*/
+
 /*var request = require('request');
 
 request({
   url: 'https://api.someapi.com/oauth/token',
   method: 'POST',
-  auth: {
-    user: 'xxx',
-    pass: 'yyy'
-  },
   form: {
+		'code':'none',
+
     'grant_type': 'client_credentials'
   }
 }, function(err, res) {
   var json = JSON.parse(res.body);
   console.log("Access Token:", json.access_token);
 });*/
-
-//var provider = lti.Provider (consumer_key, consumer_secret)
-
-
 
 
 passport.use(new LocalStrategy(function(username, password, done) {
@@ -69,8 +83,12 @@ router.post('/logout', function(req, res) {
 	req.logOut();
 	res.status(200).end();
 });
-router.post('/', function(req, res) {
+router.post('/lti', function(req, res) {
 	console.log(req.body);
+	res.send("OK");
+});
+router.get('/lti', function(req, res) {
+	console.log(req.params);
 	res.send("OK");
 });
 
