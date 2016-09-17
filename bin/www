@@ -31,15 +31,17 @@ var credentials = {
 };
 
 db.sequelize.sync().then(function() {
-	/* listen (start app with node server.js) ====================================== */
-	var httpsServer = https.createServer(credentials, app);
-	httpsServer.listen(httpsPort, function() {
-		console.log("https server listen on ", httpsPort, "port");
-	});
+
 
 	// Se crea una app de express para redireccionar el tráfico http a https.
 	var httpServer;
 	if(env === "production"){
+		/* listen (start app with node server.js) ====================================== */
+		var httpsServer = https.createServer(credentials, app);
+		httpsServer.listen(httpsPort, function() {
+			console.log("https server listen on ", httpsPort, "port");
+		});
+
 		var redirectApp = express();
 		redirectApp.all('*', function(req, res) {
 			return res.redirect("https://" + req.headers.host + req.url);
