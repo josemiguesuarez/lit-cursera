@@ -15,7 +15,7 @@ var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, User) {
     });
 };
 
-var app = angular.module('app', ['ngRoute', 'autoDisplay', 'ngFileUpload', 'ngMaterial'])
+var app = angular.module('app', ['ngRoute', 'ngFileUpload', 'ngMaterial'])
 
 .config(function($routeProvider, $httpProvider, $mdThemingProvider) {
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
