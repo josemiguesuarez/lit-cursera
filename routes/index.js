@@ -88,7 +88,7 @@ router.post('/lti', function(req, res) {
 	res.send("OK");
 });
 router.get('/lti', function(req, res) {
-	console.log(req.params);
+	console.log(req.param);
 	res.send("OK");
 });
 
