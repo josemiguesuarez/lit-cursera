@@ -18,12 +18,12 @@ var lti = require('ims-lti');
 
 var request = require('request');
 var CourseraStrategy = require('passport-coursera-oauth').OAuth2Strategy;
-var CLIENT_ID = '_ZebnnLCwq5CtJaZUnaFiQ';
-var CLIENT_SECRET = 'TmzslydSk7z5Wl2gOCNDsg';
+var CLIENT_ID = 'fFH0i9s6B-a27m5_vw48kA';
+var CLIENT_SECRET = 'leLRWDakQpZ47Cr8LgVDJQ';
 
 
 
-setTimeout(function() {
+/*setTimeout(function() {
     request({
         url: 'https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Fcupiexamenes.herokuapp.com%2Flti&scope=view_profile&state=csrf_code1234',
         method: 'GET'
@@ -31,7 +31,7 @@ setTimeout(function() {
         console.log("Se hizo ping")
             //console.log("Access Token:", res.body);
     });
-}, 8000);
+}, 8000);*/
 
 
 //var provider = lti.Provider (consumer_key, consumer_secret)
