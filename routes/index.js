@@ -17,6 +17,9 @@ var lti = require('ims-lti');
 //TODO identify if i should errase this code:
 
 var request = require('request');
+var CourseraStrategy = require('passport-coursera-oauth').OAuth2Strategy;
+var CLIENT_ID = '_ZebnnLCwq5CtJaZUnaFiQ';
+var CLIENT_SECRET = 'TmzslydSk7z5Wl2gOCNDsg';
 
 
 
@@ -44,6 +47,21 @@ var request = require('request');
 
 
 
+passport.use(new CourseraStrategy({
+        clientID: CLIENT_ID,
+        clientSecret: CLIENT_SECRET,
+        callbackURL: "http://cupiexamenes.herokuapp.com/lti",
+        profileFields: ['timezone', 'locale', 'privacy']
+    },
+    function(accessToken, profile, done) {
+        console.log("Access Token 1:", accessToken);
+        console.log("profile profile 1:", profile);
+        done(false, {
+            hola: "hola"
+        });
+    }
+));
+
 passport.use(new LocalStrategy(function(username, password, done) {
     db.usuario.findById(username)
         .then(function(findedUser) {
@@ -67,23 +85,29 @@ passport.deserializeUser(function(id, done) {
         });
 });
 
+app.get('/lti',
+    passport.authenticate('coursera', {
+        scope: ['view_profile']
+    }));
 
-router.post('/login', passport.authenticate('local'), function(req, res) {
-    res.send(req.user);
-});
+app.get('/lti',
+    passport.authenticate('coursera', {
+        failureRedirect: '/login'
+    }),
+    function(req, res) {
+        console.log("YEIIII");
+            // Successful authentication, redirect home.
+        res.redirect('/');
+    });
 
-router.post('/logout', function(req, res) {
-    req.logOut();
-    res.status(200).end();
-});
-router.post('/lti', function(req, res) {
+
+router.post('/lti2', function(req, res) {
     console.log(req.body);
     res.send("OK");
 });
-router.get('/lti', function(req, res) {
+router.get('/lti2', function(req, res) {
     var code = req.query.code;
-		var CLIENT_ID = '_ZebnnLCwq5CtJaZUnaFiQ';
-		var CLIENT_SECRET = 'TmzslydSk7z5Wl2gOCNDsg';
+
     console.log("CODE coursera", code);
     request({
         url: 'https://accounts.coursera.org/oauth2/v1/token',
@@ -106,15 +130,6 @@ router.get('/lti', function(req, res) {
     });
 
     res.send("OK");
-});
-
-router.get('/loggedin', function(req, res) {
-    if (req.isAuthenticated()) {
-        req.user.password = '';
-        res.send(req.user);
-    } else {
-        res.send('0');
-    }
 });
 
 module.exports = router;

@@ -13,6 +13,7 @@
     "url": ""
   },
   "dependencies": {
+    "bluebird": "^2.9.33",
     "body-parser": "^1.13.3",
     "client-sessions": "^0.7.0",
     "continuation-local-storage": "^3.1.7",
@@ -33,6 +34,7 @@
     "mysql": "^2.9.0",
     "nodemailer": "2.5.0",
     "passport": "^0.3.2",
+    "passport-coursera-oauth": "^0.1.0",
     "passport-ldapauth": "^0.3.0",
     "passport-local": "^1.0.0",
     "pg": "^4.5.5",
@@ -42,11 +44,9 @@
     "serve-favicon": "^2.3.0",
     "sqlite3": "^3.0.8",
     "to-title-case": "^1.0.0",
-    "ursa": "^0.9.1",
-    "bluebird": "^2.9.33"
+    "ursa": "^0.9.1"
   },
   "devDependencies": {
-
     "expect.js": "^0.3.1",
     "mocha": "^2.2.5",
     "supertest": "^1.0.1"
