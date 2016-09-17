@@ -20,12 +20,15 @@ var request = require('request');
 
 
 
-request({
-  url: 'https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Fcupiexamenes.herokuapp.com%2Flti&scope=view_profile&state=csrf_code1234',
-  method: 'GET'
-}, function(err, res) {
-  console.log("Access Token:", res.body);
-});
+setTimeout(function () {
+	request({
+	  url: 'https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Fcupiexamenes.herokuapp.com%2Flti&scope=view_profile&state=csrf_code1234',
+	  method: 'GET'
+	}, function(err, res) {
+	  console.log("Access Token:", res.body);
+	});
+}, 5000);
+
 
 //var provider = lti.Provider (consumer_key, consumer_secret)
 
@@ -77,7 +80,7 @@ router.post('/lti', function(req, res) {
 	res.send("OK");
 });
 router.get('/lti', function(req, res) {
-	console.log(req.param);
+	console.log("CODE coursera", req.param, ".....    ",req.param.code);
 	request({
 	  url: 'https://accounts.coursera.org/oauth2/v1/token',
 	  method: 'POST',
