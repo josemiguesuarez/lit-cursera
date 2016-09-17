@@ -12,7 +12,7 @@ var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 
 
-var lti = require ('ims-lti');
+var lti = require('ims-lti');
 
 //TODO identify if i should errase this code:
 
@@ -20,14 +20,14 @@ var request = require('request');
 
 
 
-setTimeout(function () {
-	request({
-	  url: 'https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Fcupiexamenes.herokuapp.com%2Flti&scope=view_profile&state=csrf_code1234',
-	  method: 'GET'
-	}, function(err, res) {
-		console.log("Se hizo ping")
-	  //console.log("Access Token:", res.body);
-	});
+setTimeout(function() {
+    request({
+        url: 'https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Fcupiexamenes.herokuapp.com%2Flti&scope=view_profile&state=csrf_code1234',
+        method: 'GET'
+    }, function(err, res) {
+        console.log("Se hizo ping")
+            //console.log("Access Token:", res.body);
+    });
 }, 8000);
 
 
@@ -45,69 +45,76 @@ var request = require('request');
 
 
 passport.use(new LocalStrategy(function(username, password, done) {
-	db.usuario.findById(username)
-		.then(function(findedUser) {
-			if (findedUser) {
-				return done(null, findedUser);
-			} else {
-				return done(new Error("Credenciales incorrectas"), false);
-			}
-		}).catch(function(err){
-			return done(err, false);
-		});
+    db.usuario.findById(username)
+        .then(function(findedUser) {
+            if (findedUser) {
+                return done(null, findedUser);
+            } else {
+                return done(new Error("Credenciales incorrectas"), false);
+            }
+        }).catch(function(err) {
+            return done(err, false);
+        });
 }));
 passport.serializeUser(function(user, done) {
-	done(null, user.id);
+    done(null, user.id);
 });
 passport.deserializeUser(function(id, done) {
-	// El id es el login del usuario
-	models.Usuario.findById(id)
-		.then(function(user) {
-			done(null, user);
-		});
+    // El id es el login del usuario
+    models.Usuario.findById(id)
+        .then(function(user) {
+            done(null, user);
+        });
 });
 
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-	res.send(req.user);
+    res.send(req.user);
 });
 
 router.post('/logout', function(req, res) {
-	req.logOut();
-	res.status(200).end();
+    req.logOut();
+    res.status(200).end();
 });
 router.post('/lti', function(req, res) {
-	console.log(req.body);
-	res.send("OK");
+    console.log(req.body);
+    res.send("OK");
 });
 router.get('/lti', function(req, res) {
-	var code = req.query.code;
-	console.log("CODE coursera", code);
-	request({
-	  url: 'https://accounts.coursera.org/oauth2/v1/token',
-	  method: 'POST',
-	  form: {
-			'code': code,
-			'client_id': '_ZebnnLCwq5CtJaZUnaFiQ',
-			'client_secret': 'TmzslydSk7z5Wl2gOCNDsg',
-			'redirect_uri':'http://cupiexamenes.herokuapp.com/lti',
-	    'grant_type': 'authorization_code'
-	  }
-	}, function(err, res) {
-	  var json = JSON.parse(res.body);
-	  console.log("Access Token:", json);
-	});
+    var code = req.query.code;
+		var CLIENT_ID = '_ZebnnLCwq5CtJaZUnaFiQ';
+		var CLIENT_SECRET = 'TmzslydSk7z5Wl2gOCNDsg';
+    console.log("CODE coursera", code);
+    request({
+        url: 'https://accounts.coursera.org/oauth2/v1/token',
+        method: "POST",
+        'content-type': 'application/x-www-form-urlencoded',
+        auth: {
+            'user': CLIENT_ID,
+            'pass': CLIENT_SECRET
+        },
+        form: {
+            code: code,
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+            redirect_uri: 'http://cupiexamenes.herokuapp.com/lti',
+            grant_type: 'authorization_code'
+        }
+    }, function(err, res) {
+        var json = JSON.parse(res.body);
+        console.log("Access Token:", json);
+    });
 
-	res.send("OK");
+    res.send("OK");
 });
 
 router.get('/loggedin', function(req, res) {
-	if (req.isAuthenticated()) {
-		req.user.password = '';
-		res.send(req.user);
-	} else {
-		res.send('0');
-	}
+    if (req.isAuthenticated()) {
+        req.user.password = '';
+        res.send(req.user);
+    } else {
+        res.send('0');
+    }
 });
 
 module.exports = router;
