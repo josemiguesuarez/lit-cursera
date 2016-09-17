@@ -1,0 +1,72 @@
+<!doctype html>
+<html ng-app="app">
+
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Optimize mobile viewport -->
+    <title>Auditoria</title>
+    <link rel="shortcut icon" href="img/favico.png" type="image/png">
+    <link rel="icon" href="img/favico.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/favico.png" type="image/png">
+    <!-- Archivos de estíloas-->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" type='text/css' href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Lobster'>
+    <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Patua+One'>
+    <link rel="stylesheet" type="text/css" href="css/general.css" />
+    <link rel="stylesheet" type="text/css" href="css/buttons.css" />
+    <link rel="stylesheet" type="text/css" href="css/images.css" />
+    <link rel="stylesheet" type="text/css" href="css/angularForms.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+</head>
+
+<body>
+    <!-- Vista de la aplicación con Angular.js-->
+    <dir-global></dir-global>
+    <div ng-view style="min-height: 500px"></div>
+    <!-- Librerías -->
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit&hl=es-419" async defer>
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- load jquery -->
+    <script src="lib/1.5.5/angular.min.js"></script>
+    <script src="lib/1.5.5/angular-route.min.js"></script>
+    <script src="lib/1.5.5/angular-animate.min.js"></script>
+    <script src="lib/1.5.5/angular-aria.min.js"></script>
+    <script src="lib/1.5.5/angular-messages.min.js"></script>
+    <script src="lib/1.5.5/angular-material.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Librerías locales -->
+    <script src="lib/jsencrypt/jsencrypt.js"></script>
+    <script src="lib/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="lib/auto-display/index.js"></script>
+    <script src="lib/auto-display/information.js"></script>
+    <script src="lib/auto-display/info-options.js"></script>
+    <script src="lib/auto-display/list.js"></script>
+    <script src="lib/auto-display/pop-ups.js"></script>
+    <script src="lib/auto-display/title-options.js"></script>
+    <script src="lib/animate/disappearOnScroll.js"></script>
+    <script src="lib/moment/moment.js"></script>
+    <script src="lib/moment/locale/es.js"></script>
+    <script src="lib/ui-bootstrap/ui-bootstrap-tpls-0.13.4.min.js"></script>
+    <!-- Archivos de la aplicación Angular.js -->
+    <script src="app/app.js"></script>
+    <!-- Controllers  -->
+    <script src="app/global/global.js"></script>
+    <script src="app/global/EventHandler.js"></script>
+    <script src="app/login/login.js"></script>
+    <script src="app/login/User.js"></script>
+    <script src="app/apuestas/apuestas.js"></script>
+    <script src="app/apuestas/Apuesta.js"></script>
+    <script src="app/sorteos/sorteos.js"></script>
+    <script src="app/sorteos/Sorteo.js"></script>
+
+</body>
+
+</html>

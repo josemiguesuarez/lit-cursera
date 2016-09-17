@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+
+var debug = require('debug')('cupireservas');
+var db = require("../models");
+var Promise = require('bluebird');
+
+generateData();
+
+function generateData() {
+	return db.sequelize.sync({
+		force: true
+	}).then(function() {
+
+	});
+
+}
