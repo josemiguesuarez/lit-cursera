@@ -51,7 +51,7 @@ var request = require('request');
 passport.use(new CourseraStrategy({
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
-        callbackURL: "http://localhost:8000/lti/callback",
+        callbackURL: "http://www.cupiexamenes.com/lti/callback",
         profileFields: ['timezone', 'locale', 'privacy']
     },
     function(accessToken, profile, done) {
