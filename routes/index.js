@@ -25,7 +25,8 @@ setTimeout(function () {
 	  url: 'https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Fcupiexamenes.herokuapp.com%2Flti&scope=view_profile&state=csrf_code1234',
 	  method: 'GET'
 	}, function(err, res) {
-	  console.log("Access Token:", res.body);
+		console.log("Se hizo ping")
+	  //console.log("Access Token:", res.body);
 	});
 }, 5000);
 
@@ -85,7 +86,7 @@ router.get('/lti', function(req, res) {
 	  url: 'https://accounts.coursera.org/oauth2/v1/token',
 	  method: 'POST',
 	  form: {
-			'code':req.param.code,
+			'code':req.query.code,
 			'client_id': '_ZebnnLCwq5CtJaZUnaFiQ',
 			'client_secret': 'TmzslydSk7z5Wl2gOCNDsg',
 			'redirect_uri':'http://cupiexamenes.herokuapp.com/lti',
