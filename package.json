@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "startD": "nodemon --ignore views/ ./bin/www",
+    "startd": "nodemon --ignore views/ ./bin/www",
     "syncdb": "node ./bin/syncdb",
     "redirect": "node ./bin/redirect"
   },
@@ -24,6 +24,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "fast-csv": "^2.1.0",
+    "ims-lti": "^3.0.2",
     "jade": "~1.11.0",
     "moment": "2.11.0",
     "moment-timezone": "^0.4.0",
@@ -35,7 +36,7 @@
     "passport-ldapauth": "^0.3.0",
     "passport-local": "^1.0.0",
     "pg": "^4.5.5",
-    "request": "^2.67.0",
+    "request": "^2.74.0",
     "sequelize": "^3.3.2",
     "sequelize-cli": "^1.9.2",
     "serve-favicon": "^2.3.0",

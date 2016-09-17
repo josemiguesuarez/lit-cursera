@@ -12,6 +12,9 @@ var session = require('express-session');
 var LocalStrategy = require('passport-local').Strategy;
 
 
+var lti = require ('ims-lti');
+
+
 passport.use(new LocalStrategy(function(username, password, done) {
 	db.usuario.findById(username)
 		.then(function(findedUser) {
@@ -43,6 +46,10 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 router.post('/logout', function(req, res) {
 	req.logOut();
 	res.status(200).end();
+});
+router.post('/', function(req, res) {
+	console.log(req.body);
+	res.send("OK");
 });
 
 router.get('/loggedin', function(req, res) {
