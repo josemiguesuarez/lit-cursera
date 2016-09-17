@@ -21,12 +21,12 @@ var DEFAULT_MAX_AGE = 60 * 60 * 1000;
 
 
 //jobs.iniciarTrabajos();
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
 	if (req.originalUrl.indexOf("index") > -1)
 		console.log("X-Frame-Options REQUEST URL:", req.originalUrl);
 	res.setHeader('X-Frame-Options', "Deny");
 	next();
-});
+});*/
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
