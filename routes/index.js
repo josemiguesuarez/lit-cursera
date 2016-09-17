@@ -22,6 +22,7 @@ var CLIENT_ID = 'fFH0i9s6B-a27m5_vw48kA';
 var CLIENT_SECRET = 'leLRWDakQpZ47Cr8LgVDJQ';
 
 //https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Flocalhost%3A8000%2Flti&scope=view_profile&state=csrf_code1234
+//https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=_ZebnnLCwq5CtJaZUnaFiQ&redirect_uri=https%3A%2F%2Fcupiexamenes.herokuapp.com%2Flti&scope=view_profile&state=csrf_code1234
 
 /*setTimeout(function() {
     request({
