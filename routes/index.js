@@ -86,7 +86,7 @@ passport.deserializeUser(function(id, done) {
         });
 });
 
-router.get('/lti',
+router.get('/lti2',
     passport.authenticate('coursera', {
         scope: ['view_profile']
     }));
@@ -106,7 +106,7 @@ router.post('/lti', function(req, res) {
     console.log("Coursera response", req.body);
     res.send("OK");
 });
-router.get('/lti2', function(req, res) {
+router.get('/lti', function(req, res) {
     var code = req.query.code;
 
     console.log("CODE coursera", code);
@@ -122,7 +122,7 @@ router.get('/lti2', function(req, res) {
             code: code,
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
-            redirect_uri: 'http://cupiexamenes.herokuapp.com/lti',
+            redirect_uri: 'http://www.cupiexamenes.com/lti',
             grant_type: 'authorization_code'
         }
     }, function(err, res) {
