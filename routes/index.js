@@ -28,7 +28,7 @@ setTimeout(function () {
 		console.log("Se hizo ping")
 	  //console.log("Access Token:", res.body);
 	});
-}, 5000);
+}, 8000);
 
 
 //var provider = lti.Provider (consumer_key, consumer_secret)
@@ -81,12 +81,13 @@ router.post('/lti', function(req, res) {
 	res.send("OK");
 });
 router.get('/lti', function(req, res) {
-	console.log("CODE coursera", req.query.code);
+	var code = req.query.code;
+	console.log("CODE coursera", code);
 	request({
 	  url: 'https://accounts.coursera.org/oauth2/v1/token',
 	  method: 'POST',
 	  form: {
-			'code':req.query.code,
+			'code': code,
 			'client_id': '_ZebnnLCwq5CtJaZUnaFiQ',
 			'client_secret': 'TmzslydSk7z5Wl2gOCNDsg',
 			'redirect_uri':'http://cupiexamenes.herokuapp.com/lti',
@@ -94,7 +95,7 @@ router.get('/lti', function(req, res) {
 	  }
 	}, function(err, res) {
 	  var json = JSON.parse(res.body);
-	  console.log("Access Token:", json.access_token, json);
+	  console.log("Access Token:", json);
 	});
 
 	res.send("OK");
