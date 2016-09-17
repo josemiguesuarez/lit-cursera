@@ -16,6 +16,8 @@ var httpPort = (config.server.http.port || 80);
 var privateKey;
 var certificate;
 
+console.log("HEROKU!!!!")
+
 
 if (env === "production") {
 	privateKey = fs.readFileSync('/etc/pki/tls/private/virtual/myserver.key');
@@ -48,7 +50,7 @@ var credentials = {
 			console.log("http server listen on", httpPort, "port");
 		});
 	} else {
-		httpServer = http.createServer(app); //https.createServer(credentials, app); 
+		httpServer = http.createServer(app); //https.createServer(credentials, app);
 		httpServer.listen(httpPort, function() {
 			console.log("http server listen on", httpPort, "port");
 		});

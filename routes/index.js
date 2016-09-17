@@ -14,6 +14,28 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var lti = require ('ims-lti');
 
+//TODO identify if i should errase this code:
+/*var request = require('request');
+
+request({
+  url: 'https://api.someapi.com/oauth/token',
+  method: 'POST',
+  auth: {
+    user: 'xxx',
+    pass: 'yyy'
+  },
+  form: {
+    'grant_type': 'client_credentials'
+  }
+}, function(err, res) {
+  var json = JSON.parse(res.body);
+  console.log("Access Token:", json.access_token);
+});*/
+
+//var provider = lti.Provider (consumer_key, consumer_secret)
+
+
+
 
 passport.use(new LocalStrategy(function(username, password, done) {
 	db.usuario.findById(username)
