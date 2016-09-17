@@ -35,20 +35,9 @@ Auth Method: OAuth2
 Redirect URIs:
 https://cupiexamenes.herokuapp.com*/
 
-/*var request = require('request');
+var request = require('request');
 
-request({
-  url: 'https://api.someapi.com/oauth/token',
-  method: 'POST',
-  form: {
-		'code':'none',
 
-    'grant_type': 'client_credentials'
-  }
-}, function(err, res) {
-  var json = JSON.parse(res.body);
-  console.log("Access Token:", json.access_token);
-});*/
 
 
 passport.use(new LocalStrategy(function(username, password, done) {
@@ -89,6 +78,21 @@ router.post('/lti', function(req, res) {
 });
 router.get('/lti', function(req, res) {
 	console.log(req.param);
+	request({
+	  url: 'https://accounts.coursera.org/oauth2/v1/token',
+	  method: 'POST',
+	  form: {
+			'code':req.param.code,
+			'client_id': '_ZebnnLCwq5CtJaZUnaFiQ',
+			'client_secret': 'TmzslydSk7z5Wl2gOCNDsg',
+			'redirect_uri':'http://cupiexamenes.herokuapp.com/lti',
+	    'grant_type': 'client_credentials'
+	  }
+	}, function(err, res) {
+	  var json = JSON.parse(res.body);
+	  console.log("Access Token:", json.access_token, json);
+	});
+
 	res.send("OK");
 });
 
