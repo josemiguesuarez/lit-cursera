@@ -10,8 +10,7 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var Promise = require('bluebird');
-var httpsPort = (config.server.https.port || 443);
-var httpPort = (config.server.http.port || 80);
+var httpPort = process.env.PORT || 8000;
 
 var privateKey;
 var certificate;
@@ -34,24 +33,7 @@ var credentials = {
 
 	// Se crea una app de express para redireccionar el tráfico http a https.
 	var httpServer;
-	if(env === "production"){
-		/* listen (start app with node server.js) ====================================== */
-		var httpsServer = https.createServer(credentials, app);
-		httpsServer.listen(httpsPort, function() {
-			console.log("https server listen on ", httpsPort, "port");
-		});
-
-		var redirectApp = express();
-		redirectApp.all('*', function(req, res) {
-			return res.redirect("https://" + req.headers.host + req.url);
-		});
-		httpServer = http.createServer(redirectApp);
-		httpServer.listen(httpPort, function() {
-			console.log("http server listen on", httpPort, "port");
-		});
-	} else {
 		httpServer = http.createServer(app); //https.createServer(credentials, app);
 		httpServer.listen(httpPort, function() {
 			console.log("http server listen on", httpPort, "port");
 		});
-	}
