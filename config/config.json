@@ -9,7 +9,7 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8080
+        "port": 8000
       },
       "https":{
         "port": 8081
@@ -29,7 +29,7 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8080
+        "port": 8000
       },
       "https":{
         "port": 8081
@@ -49,7 +49,7 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8080
+        "port": 8000
       },
       "https":{
         "port": 8081
