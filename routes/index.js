@@ -85,12 +85,12 @@ passport.deserializeUser(function(id, done) {
         });
 });
 
-app.get('/lti',
+router.get('/lti',
     passport.authenticate('coursera', {
         scope: ['view_profile']
     }));
 
-app.get('/lti',
+router.get('/lti',
     passport.authenticate('coursera', {
         failureRedirect: '/login'
     }),
