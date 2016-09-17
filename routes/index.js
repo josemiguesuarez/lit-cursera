@@ -81,7 +81,7 @@ router.post('/lti', function(req, res) {
 	res.send("OK");
 });
 router.get('/lti', function(req, res) {
-	console.log("CODE coursera", req.param, ".....    ",req.param.code);
+	console.log("CODE coursera", req.query.code);
 	request({
 	  url: 'https://accounts.coursera.org/oauth2/v1/token',
 	  method: 'POST',
