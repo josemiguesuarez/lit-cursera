@@ -15,7 +15,7 @@
     });
 };*/
 
-var app = angular.module('app', ['ngRoute', 'ngMaterial']);
+var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ui.ace']);
 
 app.config(function($routeProvider, $httpProvider, $mdThemingProvider) {
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
