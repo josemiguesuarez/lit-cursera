@@ -1,9 +1,9 @@
 (function() {
     angular.module('app').controller('PreguntasCtrl', function ($scope, Pregunta) {
-        $scope.aceLoaded = function (_editor) {
-            // Options
-            console.log("entra");
-            _editor.getSession().setMode("ace/mode/java");
-        };
+        $scope.pregunta={
+            "numero":1,
+            "enunciado":"Esto es un mock del enunciado de una pregunta",
+            "porcentaje":20
+        }
     });
 })();

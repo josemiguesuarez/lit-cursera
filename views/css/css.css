@@ -1,1 +1,4 @@
-.ace_editor { height: 200px; }
+.ace_editor {
+    height: 200px;
+    margin: 10px;
+}
