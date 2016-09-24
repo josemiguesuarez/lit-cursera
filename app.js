@@ -3,6 +3,7 @@ var config = require('./config/config.json')[env];
 
 var express = require('express');
 var path = require('path');
+var fs = require('fs')
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -76,7 +77,15 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', require('./routes/index'));
-app.use('/usuarios', require('./routes/usuarios'));
+fs
+    .readdirSync("./routes")
+    .filter(function(file) {
+        return (file.indexOf(".") !== 0) && (file !== "index.js");
+    })
+    .forEach(function(file) {
+			var name = file.replace('.js','')
+      app.use('/'+name, require('./routes/'+file));
+    });
 
 
 // catch 404 and forward to error handler

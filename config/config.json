@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "user",
-    "password": "pass",
-    "database": "database",
+    "username": "postgres",
+    "password": "admin",
+    "database": "cupiexamenes",
     "host": "127.0.0.1",
     "dialect": "postgres",
     "timezone":"America/Bogota",
