@@ -7,14 +7,12 @@ module.exports = function(sequelize, DataTypes) {
         enunciado: {
             type: DataTypes.STRING(2500),
             field: 'enunciado',
-            allowNull: false,
-            primaryKey: false
+            allowNull: false
         },
         numero: {
             type: DataTypes.INTEGER(),
             field: 'numero',
-            allowNull: false,
-            primaryKey: true
+            allowNull: false
         },
         peso: {
             type: DataTypes.DECIMAL(4,2),
@@ -28,8 +26,7 @@ module.exports = function(sequelize, DataTypes) {
         }
 
     }, {
-        tableName: 'pregunta',
-        timestamps: false,
+        timestamps: true,
         classMethods: {
             associate: function(db) {
 

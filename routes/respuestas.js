@@ -16,18 +16,4 @@ router.post('/', function(req, res, next) {
        return res.send(resp);
     }).catch(next);
 });
-router.get('/prueba', function(req, res,next) {
-  //  var data = utils.getterFromPost(req);
-  /*  var respuesta = {
-        respuesta: data.get('respuesta', 'Debe enviar una respuesta con contenido')
-    };
-
-    //db.RespuestaPregunta.create(respuesta).then(function(resp) {
-    //    return res.send(resp);
-    //}).catch(next);*/
-    res.send("Hello World!");
-    //console.log("holla");
-});
-
-
 module.exports = router;

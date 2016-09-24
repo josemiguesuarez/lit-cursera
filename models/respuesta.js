@@ -2,19 +2,17 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    var defaultInclude;
-    return sequelize.define("RespuestaPregunta", {
+    var defaultInclude, db;
+    return sequelize.define("Respuesta", {
         calificacion: {
             type: DataTypes.DECIMAL(8,4),
             field: 'calificacion',
-            allowNull: true,
-            primaryKey: false
+            allowNull: true
         },
         retroalimentacion: {
             type: DataTypes.STRING(2500),
             field: 'retroalimentacion',
-            allowNull: true,
-            primaryKey: false
+            allowNull: true
         },
         texto: {
             type: DataTypes.TEXT(),
@@ -22,11 +20,11 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         }
     }, {
-        tableName: 'respuesta_pregunta',
-        timestamps: false,
+        timestamps: true,
         classMethods: {
-            associate: function(db) {
-
+            associate: function(dbP) {
+              db = dbP
+              db.Respuesta.belongsTo(db.Pregunta,{as:'pregunta', foreignKey:{allowNull:false}});
             },
         }
     });
