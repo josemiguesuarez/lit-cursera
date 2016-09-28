@@ -176,7 +176,7 @@ router.get('/lti', function(req, resGlobal) {
             var body = JSON.parse(res.body);
             var usuarioId = body.elements[0].id;
             console.log("usuarioId", usuarioId);
-            resGlobal.redirect("http://www.google.com/");
+            resGlobal.redirect("/");
 
         });
 
