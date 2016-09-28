@@ -136,6 +136,9 @@ router.post('/api/resuesta', function(req, res) {
 
 
 router.get('/lti', function(req, resGlobal) {
+    console.log("/lti : req.hostname" , req.hostname);
+    console.log("/lti : req.ip" , req.ip);
+    
     var code = req.query.code;
     var status = req.query.status;
     console.log(req.query, "status:", status);
