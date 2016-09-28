@@ -138,7 +138,7 @@ router.post('/api/resuesta', function(req, res) {
 router.get('/lti', function(req, resGlobal) {
     console.log("/lti : req.hostname" , req.hostname);
     console.log("/lti : req.ip" , req.ip);
-    
+
     var code = req.query.code;
     var status = req.query.status;
     console.log(req.query, "status:", status);
@@ -176,7 +176,7 @@ router.get('/lti', function(req, resGlobal) {
             var body = JSON.parse(res.body);
             var usuarioId = body.elements[0].id;
             console.log("usuarioId", usuarioId);
-            resGlobal.redirect("/");
+            resGlobal.redirect("http://www.google.com/");
 
         });
 
