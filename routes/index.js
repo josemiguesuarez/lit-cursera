@@ -112,7 +112,7 @@ router.post('/access', function(req, res) {
     var curso = "1";
     var nivel = "2";
     var examen = "3";
-    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
+    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=https%3A%2F%2Fcupitips.virtual.uniandes.edu.co%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
 });
 router.post('/lti/callback', function(req, res) {
     console.log("Coursera response 3 POST:/lti/callback", req.body);
