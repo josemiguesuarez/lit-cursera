@@ -112,7 +112,9 @@ router.post('/access', function(req, res) {
     var curso = req.body.custom_nivel;
     var nivel = req.body.custom_curso;
     var examen = req.body.custom_examen;
-    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=https%3A%2F%2Fcupitips.virtual.uniandes.edu.co%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
+    var lis_outcome_service_url = req.body.lis_outcome_service_url;
+    var context_id = req.body.context_id;
+    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=https%3A%2F%2Fcupitips.virtual.uniandes.edu.co%2Flti&scope=view_profile&state=" + lis_outcome_service_url + "-" +context_id+ "-" + curso + "-" + nivel + "-" + examen);
 });
 router.post('/lti/callback', function(req, res) {
     console.log("Coursera response 3 POST:/lti/callback", req.body);
@@ -123,7 +125,7 @@ router.get('/lti/callback', function(req, res) {
     res.send("OK");
 });
 
-router.get('/access', function(req, res) {
+/*router.get('/access', function(req, res) {
     console.log("User query", req.query);
     var curso = req.query.curso;
     var nivel = req.query.nivel;
@@ -132,7 +134,7 @@ router.get('/access', function(req, res) {
     var context_id = req.query.context_id;
 
     res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + lis_outcome_service_url + "-" +context_id+ "-" + curso + "-" + nivel + "-" + examen);
-});
+});*/
 
 router.post('/api/resuesta', function(req, res) {
     console.log("Nuevo envío de respuesta Header", req.get('Authorization'));
