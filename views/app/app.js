@@ -22,6 +22,10 @@ app.config(function($routeProvider, $httpProvider, $mdThemingProvider) {
     moment.locale('es');
     $routeProvider
         .when('/', {
+            controller: 'CalificacionesCtrl',
+            templateUrl: 'app/calificaciones/calificaciones.html'
+        })
+        .when('/preguntas', {
             controller: 'PreguntasCtrl',
             templateUrl: 'app/preguntas/preguntas.html',
             /*resolve: {

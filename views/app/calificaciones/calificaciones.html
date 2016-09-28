@@ -1,0 +1,30 @@
+<div layout="row">
+    <span flex="20"></span>
+    <div flex="60" ng-cloak>
+        <md-toolbar md-scroll-shrink>
+            <div class="md-toolbar-tools" layout="row">
+                <h3>
+                    <span>Pregunta {{calificacion.pregunta.numero}}</span>
+                </h3>
+                <span flex></span>
+                <h3 flex="10">
+                    {{calificacion.nota}}
+                </h3>
+                <h3 flex="10">
+                    {{calificacion.pregunta.porcentaje}}%
+                </h3>
+            </div>
+        </md-toolbar>
+        <md-content flex style="height: 450px;">
+            <md-subheader><h3>Retroalimentación</h3></md-subheader>
+            <md-list>
+                <md-list-item class="md-3-line" ng-repeat="punto in calificacion.retroalimentacion" ng-click="null">
+                    <div class="md-list-item-text" layout="column">
+                        <p>{{punto.mensaje}}</p>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+    <span flex="20"></span>
+</div>
