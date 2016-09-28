@@ -1,9 +1,24 @@
 (function() {
-    angular.module('app').controller('PreguntasCtrl', function ($scope, Pregunta) {
+    angular.module('app').controller('PreguntasCtrl', function ($scope, $mdDialog, Pregunta) {
         $scope.pregunta={
             "numero":1,
             "enunciado":"Esto es un mock del enunciado de una pregunta",
-            "porcentaje":20
+            "porcentaje":20,
+            "esqueleto":"esto es codigo esqueleto"
         }
+        $scope.respuesta=angular.copy($scope.pregunta.esqueleto);
+        $scope.undoRespuesta = function(ev) {
+            var confirm = $mdDialog.confirm()
+                .title('¿Quieres deshacer tu código?')
+                .textContent('Tu respuesta será borrada y solo quedará el esqueleto de la pregunta')
+                .ariaLabel('Lucky day')
+                .targetEvent(ev)
+                .ok('Quiero borrarlo')
+                .cancel('Volver');
+            $mdDialog.show(confirm).then(function() {
+                $scope.respuesta=angular.copy($scope.pregunta.esqueleto);
+            }, function() {
+            });
+        };
     });
 })();
