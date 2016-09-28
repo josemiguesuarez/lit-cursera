@@ -109,9 +109,9 @@ router.post('/', function(req, res) {
 });
 router.post('/access', function(req, res) {
     console.log("Coursera response 2 POST:/access/", req.body);
-    var curso = "1";
-    var nivel = "2";
-    var examen = "3";
+    var curso = req.body.custom_nivel;
+    var nivel = req.body.custom_curso;
+    var examen = req.body.custom_examen;
     res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=https%3A%2F%2Fcupitips.virtual.uniandes.edu.co%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
 });
 router.post('/lti/callback', function(req, res) {
