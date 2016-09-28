@@ -131,7 +131,8 @@ router.get('/access', function(req, res) {
 
 router.get('/lti', function(req, res) {
     var code = req.query.code;
-    console.log(req.query);
+    var status = req.query.status;
+    console.log(req.query, "status:", status);
 
     console.log("CODE coursera", code);
     request({
@@ -166,13 +167,13 @@ router.get('/lti', function(req, res) {
             var body = JSON.parse(res.body);
             var usuarioId = body.elements[0].id;
             console.log("usuarioId", usuarioId);
-
+            res.redirect("/");
 
         });
 
     });
 
-    res.redirect("/");
+
 });
 
 module.exports = router;
