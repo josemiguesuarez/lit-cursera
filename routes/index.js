@@ -119,6 +119,16 @@ router.get('/lti/callback', function(req, res) {
     console.log("Coursera response 4 GET:/lti/callback", req.query);
     res.send("OK");
 });
+
+router.get('/access', function(req, res) {
+    console.log("User query", req.query);
+    var curso=req.query.curso;
+    var nivel=req.query.nivel;
+    var examen=req.query.examen;
+
+    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
+});
+
 router.get('/lti', function(req, res) {
     var code = req.query.code;
     console.log(req.query);
@@ -136,7 +146,7 @@ router.get('/lti', function(req, res) {
             code: code,
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
-            redirect_uri: 'http://www.cupiexamenes.com/lti',
+            redirect_uri: 'http://www.cupiexamenes.com/lti', //URL de la consola de Coursera (Aplicacion)
             grant_type: 'authorization_code'
         }
     }, function(err, res) {
@@ -144,7 +154,7 @@ router.get('/lti', function(req, res) {
         console.log("Access Token:", json);
     });
 
-    res.send("OK");
+    res.redirect("/");
 });
 
 module.exports = router;
