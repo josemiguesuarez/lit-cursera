@@ -159,7 +159,7 @@ router.get('/lti', function(req, resGlobal) {
             code: code,
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
-            redirect_uri: 'http://www.cupiexamenes.com/lti', //URL de la consola de Coursera (Aplicacion)
+            redirect_uri: 'https://cupitips.virtual.uniandes.edu.co/lti', //URL de la consola de Coursera (Aplicacion)
             grant_type: 'authorization_code'
         }
     }, function(err, res) {
