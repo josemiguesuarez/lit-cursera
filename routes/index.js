@@ -190,7 +190,7 @@ router.get('/lti', function(req, resGlobal) {
             resGlobal.redirect("/");
             request({
                 method: 'PUT',
-                uri: lis_outcome_service_url,
+                uri: 'https://api.coursera.org/api/onDemandLtiOutcomes.v2',
                 headers: {
                     'Authorization': tokenType + ' ' + token,
                     'content-type': ''
