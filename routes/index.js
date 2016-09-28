@@ -129,6 +129,12 @@ router.get('/access', function(req, res) {
     res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
 });
 
+router.post('/api/resuesta', function(req, res) {
+    console.log("Nuevo envío de respuesta Header", req.get('Authorization'));
+    res.send("OK");
+});
+
+
 router.get('/lti', function(req, resGlobal) {
     var code = req.query.code;
     var status = req.query.status;

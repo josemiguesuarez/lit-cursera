@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app').controller('PreguntasCtrl', function ($scope, $mdDialog, Pregunta) {
+    angular.module('app').controller('PreguntasCtrl', function ($scope, $http, $mdDialog, Pregunta) {
         $scope.pregunta={
             "numero":1,
             "enunciado":"Esto es un mock del enunciado de una pregunta",
@@ -19,6 +19,14 @@
                 $scope.respuesta=angular.copy($scope.pregunta.esqueleto);
             }, function() {
             });
+        };
+
+        $scope.enviar = function(respuesta){
+          $http.post("/api/resuesta", {
+            respuesta: respuesta
+          }).then(function(resp){
+            console.log(resp.data);
+          });
         };
     });
 })();
