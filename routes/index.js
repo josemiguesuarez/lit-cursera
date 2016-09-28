@@ -193,7 +193,7 @@ router.get('/lti', function(req, resGlobal) {
                 uri: 'https://api.coursera.org/api/onDemandLtiOutcomes.v2',
                 headers: {
                     'Authorization': tokenType + ' ' + token,
-                    'content-type': ''
+                    'Host': "api.coursera.org"
                 },
                 multipart: [{
                     'content-type': 'application/vnd.ims.lis.v2.result+json',
