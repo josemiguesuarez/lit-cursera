@@ -103,7 +103,11 @@ router.get('/lti/callback',
 
 
 router.post('/lti', function(req, res) {
-    console.log("Coursera response", req.body);
+    console.log("Coursera response 2", req.body);
+    res.send("OK");
+});
+router.post('/', function(req, res) {
+    console.log("Coursera response 2", req.body);
     res.send("OK");
 });
 router.get('/lti', function(req, res) {
