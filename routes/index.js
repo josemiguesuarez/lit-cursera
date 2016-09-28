@@ -203,12 +203,9 @@ router.get('/lti', function(req, resGlobal) {
                     })
                 }]
             }, function(error, response, body) {
-                if (response.statusCode == 201) {
-                    console.log(body);
-                } else {
-                    console.log('status:' + response.statusCode);
-                    console.log(body);
-                }
+                console.log("body last", body);
+                console.log("response last",response);
+
             });
 
         });
