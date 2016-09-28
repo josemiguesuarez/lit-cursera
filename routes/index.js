@@ -129,8 +129,9 @@ router.get('/access', function(req, res) {
     var nivel = req.query.nivel;
     var examen = req.query.examen;
     var lis_outcome_service_url = req.query.lis_outcome_service_url;
+    var context_id = req.query.context_id;
 
-    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + lis_outcome_service_url + "-" + curso + "-" + nivel + "-" + examen);
+    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + lis_outcome_service_url + "-" +context_id+ "-" + curso + "-" + nivel + "-" + examen);
 });
 
 router.post('/api/resuesta', function(req, res) {
@@ -148,6 +149,7 @@ router.get('/lti', function(req, resGlobal) {
     console.log(req.query, "status:", status);
     var statusSplit = status.split("-");
     var lis_outcome_service_url = statusSplit[0];
+    var context_id = statusSplit[1];
     console.log(lis_outcome_service_url);
 
     console.log("CODE coursera", code);
@@ -194,7 +196,7 @@ router.get('/lti', function(req, resGlobal) {
                 multipart: [{
                     'content-type': 'application/vnd.ims.lis.v2.result+json',
                     body: JSON.stringify({
-                        "@context": "http://purl.imsglobal.org/ctx/lis/v2/Result",
+                        "@context": context_id,
                         "@type": "Result",
                         "resultScore": 0.83,
                         "comment": "This is exceptional work."
