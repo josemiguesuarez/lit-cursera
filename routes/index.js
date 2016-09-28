@@ -128,8 +128,9 @@ router.get('/access', function(req, res) {
     var curso = req.query.curso;
     var nivel = req.query.nivel;
     var examen = req.query.examen;
+    var lis_outcome_service_url = req.query.lis_outcome_service_url;
 
-    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
+    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + lis_outcome_service_url + "-" + curso + "-" + nivel + "-" + examen);
 });
 
 router.post('/api/resuesta', function(req, res) {
@@ -139,12 +140,15 @@ router.post('/api/resuesta', function(req, res) {
 
 
 router.get('/lti', function(req, resGlobal) {
-    console.log("/lti : req.hostname" , req.hostname);
-    console.log("/lti : req.ip" , req.ip);
+    console.log("/lti : req.hostname", req.hostname);
+    console.log("/lti : req.ip", req.ip);
 
     var code = req.query.code;
     var status = req.query.status;
     console.log(req.query, "status:", status);
+    var statusSplit = status.split("-");
+    var lis_outcome_service_url = statusSplit[0];
+    console.log(lis_outcome_service_url);
 
     console.log("CODE coursera", code);
     request({
@@ -180,6 +184,30 @@ router.get('/lti', function(req, resGlobal) {
             var usuarioId = body.elements[0].id;
             console.log("usuarioId", usuarioId);
             resGlobal.redirect("/");
+            request({
+                method: 'PUT',
+                uri: lis_outcome_service_url,
+                headers: {
+                    'Authorization': tokenType + ' ' + token,
+                    'content-type': ''
+                },
+                multipart: [{
+                    'content-type': 'application/vnd.ims.lis.v2.result+json',
+                    body: JSON.stringify({
+                        "@context": "http://purl.imsglobal.org/ctx/lis/v2/Result",
+                        "@type": "Result",
+                        "resultScore": 0.83,
+                        "comment": "This is exceptional work."
+                    })
+                }]
+            }, function(error, response, body) {
+                if (response.statusCode == 201) {
+                    console.log(body);
+                } else {
+                    console.log('status:' + response.statusCode);
+                    console.log(body);
+                }
+            });
 
         });
 
