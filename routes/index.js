@@ -203,6 +203,7 @@ router.get('/lti', function(req, resGlobal) {
                     })
                 }]
             }, function(error, response, body) {
+                console.log("error last", error);
                 console.log("body last", body);
                 console.log("response last",response);
 
