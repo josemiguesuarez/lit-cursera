@@ -121,6 +121,7 @@ router.get('/lti/callback', function(req, res) {
 });
 router.get('/lti', function(req, res) {
     var code = req.query.code;
+    console.log(req.query);
 
     console.log("CODE coursera", code);
     request({
