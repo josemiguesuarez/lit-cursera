@@ -28,9 +28,20 @@ var credentials = {
 };*/
 
 
-	// Se crea una app de express para redireccionar el tráfico http a https.
-	var httpServer;
-		httpServer = http.createServer(app); //
-		httpServer.listen(httpPort, function() {
-			console.log("http server listen on", httpPort, "port");
-		});
+// Se crea una app de express para redireccionar el tráfico http a https.
+/*var httpServer;
+httpServer = http.createServer(app); //
+httpServer.listen(httpPort, function() {
+    console.log("http server listen on", httpPort, "port");
+});*/
+
+var privateKey = fs.readFileSync(path.join("config", "sslcert", "server.key"));
+var certificate = fs.readFileSync(path.join("config", "sslcert", "server.cert"));
+var credentials = {
+    key: privateKey,
+    cert: certificate
+};
+var httpsServer = https.createServer(credentials, app);
+httpsServer.listen(httpPort, function() {
+    console.log("https server listen on ", httpPort, "port");
+});
