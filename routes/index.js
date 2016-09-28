@@ -122,9 +122,9 @@ router.get('/lti/callback', function(req, res) {
 
 router.get('/access', function(req, res) {
     console.log("User query", req.query);
-    var curso=req.query.curso;
-    var nivel=req.query.nivel;
-    var examen=req.query.examen;
+    var curso = req.query.curso;
+    var nivel = req.query.nivel;
+    var examen = req.query.examen;
 
     res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
 });
@@ -150,8 +150,26 @@ router.get('/lti', function(req, res) {
             grant_type: 'authorization_code'
         }
     }, function(err, res) {
-        var json = JSON.parse(res.body);
-        console.log("Access Token:", json);
+        console.log("Access Token:", res.body);
+        var body = JSON.parse(res.body);
+        var token = body.access_token;
+        var expires = body.expires_in;
+        var tokenType = body.token_type;
+        request({
+            url: 'https://api.coursera.org/api/externalBasicProfiles.v1?q=me',
+            method: "GET",
+            headers: {
+                'Authorization': tokenType + ' ' + token
+            }
+        }, function(err, res) {
+            console.log("Datos del usuario:", res.body);
+            var body = JSON.parse(res.body);
+            var usuarioId = body.elements[0].id;
+            console.log("usuarioId", usuarioId);
+
+
+        });
+
     });
 
     res.redirect("/");
