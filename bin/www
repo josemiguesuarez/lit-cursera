@@ -10,7 +10,7 @@ var http = require('http');
 var fs = require('fs');
 var path = require('path');
 var Promise = require('bluebird');
-var httpPort = process.env.PORT || 8000;
+var httpPort = process.env.PORT || 5443;
 
 var privateKey;
 var certificate;
