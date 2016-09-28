@@ -86,12 +86,12 @@ passport.deserializeUser(function(id, done) {
         });
 });
 
-router.get('/lti2',
+/*router.get('/lti2',
     passport.authenticate('coursera', {
         scope: ['view_profile']
-    }));
+    }));*/
 
-router.get('/lti/callback',
+/*router.get('/lti/callback',
     passport.authenticate('coursera', {
         failureRedirect: '/login'
     }),
@@ -99,15 +99,24 @@ router.get('/lti/callback',
         console.log("YEIIII");
             // Successful authentication, redirect home.
         res.redirect('/');
-    });
+    });*/
 
 
-router.post('/lti', function(req, res) {
-    console.log("Coursera response 2", req.body);
+
+router.post('/', function(req, res) {
+    console.log("Coursera response 1 POST:/", req.body);
     res.send("OK");
 });
-router.post('/', function(req, res) {
-    console.log("Coursera response 2", req.body);
+router.post('/lti', function(req, res) {
+    console.log("Coursera response 2 POST:/lti/", req.body);
+    res.send("OK");
+});
+router.post('/lti/callback', function(req, res) {
+    console.log("Coursera response 3 POST:/lti/callback", req.body);
+    res.send("OK");
+});
+router.get('/lti/callback', function(req, res) {
+    console.log("Coursera response 4 GET:/lti/callback", req.query);
     res.send("OK");
 });
 router.get('/lti', function(req, res) {
