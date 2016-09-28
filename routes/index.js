@@ -145,11 +145,11 @@ router.get('/lti', function(req, resGlobal) {
     console.log("/lti : req.ip", req.ip);
 
     var code = req.query.code;
-    var status = req.query.status;
-    console.log(req.query, "status:", status);
-    var statusSplit = status.split("-");
-    var lis_outcome_service_url = statusSplit[0];
-    var context_id = statusSplit[1];
+    var state = req.query.state;
+    console.log(req.query, "state:", state);
+    var stateSplit = state.split("-");
+    var lis_outcome_service_url = stateSplit[0];
+    var context_id = stateSplit[1];
     console.log(lis_outcome_service_url);
 
     console.log("CODE coursera", code);
