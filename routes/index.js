@@ -107,9 +107,9 @@ router.post('/', function(req, res) {
     console.log("Coursera response 1 POST:/", req.body);
     res.send("OK");
 });
-router.post('/lti', function(req, res) {
-    console.log("Coursera response 2 POST:/lti/", req.body);
-    res.send("OK");
+router.post('/access', function(req, res) {
+    console.log("Coursera response 2 POST:/access/", req.body);
+    res.redirect("https://accounts.coursera.org/oauth2/v1/auth?response_type=code&client_id=fFH0i9s6B-a27m5_vw48kA&redirect_uri=http%3A%2F%2Fwww.cupiexamenes.com%2Flti&scope=view_profile&state=" + curso + "-" + nivel + "-" + examen);
 });
 router.post('/lti/callback', function(req, res) {
     console.log("Coursera response 3 POST:/lti/callback", req.body);
