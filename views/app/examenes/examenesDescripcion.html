@@ -1,0 +1,12 @@
+<div layout="column">
+    <h1>{{examen.nombre}}</h1>
+    <md-content>
+        <p>{{examen.enunciado}}</p>
+    </md-content>
+    <md-card>
+        <img ng-src="{{examen.imagen}}">
+    </md-card>
+    <div layout="row" layout-align="center center">
+        <md-button class="md-primary md-raised" ng-href="#preguntas">Ver preguntas</md-button>
+    </div>
+</div>

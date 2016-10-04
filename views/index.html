@@ -18,7 +18,11 @@
 <body>
     <!-- Vista de la aplicación con Angular.js-->
     <dir-global></dir-global>
-    <div ng-view></div>
+    <div layout="row">
+        <span flex="20"></span>
+        <div ng-view flex></div>
+        <span flex="20"></span>
+    </div>
     <!-- Librerías -->
     <!-- Librerías locales -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -47,6 +51,7 @@
     <script src="app/preguntas/preguntas.js"></script>
     <script src="app/preguntas/Pregunta.js"></script>
     <script src="app/calificaciones/calificaciones.js"></script>
+    <script src="app/examenes/examenes.js"></script>
 </body>
 
 </html>
