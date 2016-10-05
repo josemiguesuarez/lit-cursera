@@ -6,6 +6,7 @@
             "porcentaje":20,
             "esqueleto":"esto es codigo esqueleto"
         }
+        $scope.numero=['1','2','3','4'];
         $scope.respuesta=angular.copy($scope.pregunta.esqueleto);
         $scope.undoRespuesta = function(ev) {
             var confirm = $mdDialog.confirm()
