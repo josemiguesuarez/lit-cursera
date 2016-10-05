@@ -9,10 +9,11 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
     var data = utils.getterFromPost(req);
     var respuesta = {
-        texto: data.get('texto', 'Debe enviar una respuesta con contenido')
+        texto: data.get('texto', 'Debe enviar una respuesta con contenido'),
+        preguntaId: data.get('preguntaId', 'La respuesta debe pertenecer a una pregunta')
     };
     console.log("texto"+respuesta);
-    db.RespuestaPregunta.create(respuesta).then(function(resp) {
+    db.Respuesta.create(respuesta).then(function(resp) {
        return res.send(resp);
     }).catch(next);
 });
