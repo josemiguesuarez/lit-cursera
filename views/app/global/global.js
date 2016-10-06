@@ -15,7 +15,7 @@ app.directive('dirGlobal', function(){
   return {
     restrict: 'E',
     templateUrl: 'app/global/global.html',
-    controller: function($scope, $http, $location, $sce, $rootScope, $mdDialog, User, EventHandler){
+    controller: function($scope, $location, $sce, $rootScope, $mdDialog, User, EventHandler){
         $scope.AppName = 'Cupireservas';
         $scope.allow = User.allow;
 

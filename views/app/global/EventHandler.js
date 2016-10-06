@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app').service('EventHandler', function errorHandler($location, $http) {
+    angular.module('app').service('EventHandler', function errorHandler($location) {
         var errorListeners = [];
         this.error = function(res) {
             var error = res.data;

@@ -1,6 +1,6 @@
-/*var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, User) {
+/*var checkLoggedin = function($q, $timeout, Http, $location, $rootScope, User) {
     var deferred = $q.defer();
-    $http.get('/loggedin').success(function(user) {
+    Http.get('/loggedin').then(function(user) {
         if (user === '0') {
             $timeout(function() {
                 deferred.reject();

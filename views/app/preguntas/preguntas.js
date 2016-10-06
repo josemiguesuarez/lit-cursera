@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app').controller('PreguntasCtrl', function ($scope, $http, $mdDialog, Pregunta) {
+    angular.module('app').controller('PreguntasCtrl', function ($scope, $mdDialog, Pregunta) {
         $scope.pregunta={
             "id":1,
             "numero":1,
