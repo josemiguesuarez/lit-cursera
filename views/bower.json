@@ -22,6 +22,10 @@
     "moment": "^2.15.0",
     "angular-route": "^1.5.8",
     "angular-ui-ace": "^0.2.3",
-    "jquery-ui-layout": "jquery-ui-layout-bower#^1.4.4"
+    "jquery-ui-layout": "jquery-ui-layout-bower#^1.4.4",
+    "angular-resizable": "^1.2.0"
+  },
+  "resolutions": {
+    "angular": "^1.5.8"
   }
 }

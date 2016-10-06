@@ -6,7 +6,7 @@
             "enunciado":"Esto es un mock del enunciado de una pregunta",
             "porcentaje":20,
             "esqueleto":"esto es codigo esqueleto"
-        }
+        };
         $scope.imagen = "https://users.dcc.uchile.cl/~psalinas/uml/img/modelo/herencia2.jpg";
         $scope.numero=['1','2','3','4'];
         $scope.respuesta=angular.copy($scope.pregunta.esqueleto);
@@ -31,8 +31,8 @@
                 preguntaId: $scope.pregunta.id
             };
             console.log(respuesta);
-            $http.post("/respuestas", respuesta).then(function(resp){
-                console.log(resp.data);
+            Pregunta.guardarRespuesta(respuesta).then(function(data){
+                console.log(data);
             });
         };
     });

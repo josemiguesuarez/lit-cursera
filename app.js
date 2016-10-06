@@ -84,7 +84,7 @@ fs
     })
     .forEach(function(file) {
 			var name = file.replace('.js','')
-      app.use('/'+name, require('./routes/'+file));
+      app.use('/api/'+name, require('./routes/'+file));
     });
 
 
@@ -98,7 +98,7 @@ app.use(function(req, res, next) {
 // error handler
 // no stacktraces leaked to user unless in development environment
 app.use(function(err, req, res, next) {
-	console.error("ERROR APP: ", err.stack);
+	console.error("ERROR APP: ", err.message, err.stack);
 	res.status(err.status || 520);
 	res.send({
 		message: err.message,
