@@ -1,6 +1,7 @@
 (function() {
     angular.module('app').controller('PreguntasCtrl', function ($scope, $http, $mdDialog, Pregunta) {
         $scope.pregunta={
+            "id":1,
             "numero":1,
             "enunciado":"Esto es un mock del enunciado de una pregunta",
             "porcentaje":20,
@@ -24,12 +25,15 @@
             });
         };
 
-        $scope.enviar = function(respuesta){
-          $http.post("/api/resuesta", {
-            respuesta: respuesta
-          }).then(function(resp){
-            console.log(resp.data);
-          });
+        $scope.enviar = function(){
+            var respuesta = {
+                texto: $scope.respuesta,
+                preguntaId: $scope.pregunta.id
+            };
+            console.log(respuesta);
+            $http.post("/respuestas", respuesta).then(function(resp){
+                console.log(resp.data);
+            });
         };
     });
 })();
