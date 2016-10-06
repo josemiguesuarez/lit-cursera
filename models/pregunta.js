@@ -2,7 +2,7 @@
 "use strict";
 
 module.exports = function(sequelize, DataTypes) {
-    var defaultInclude;
+    var defaultInclude, db;
     return sequelize.define("Pregunta", {
         enunciado: {
             type: DataTypes.STRING(2500),
@@ -28,9 +28,18 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         timestamps: true,
         classMethods: {
-            associate: function(db) {
+            associate: function(dbP) {
+              db = dbP;
 
             },
+            save: function(model) {
+                return db.Pregunta.findById(model.id).then(function(modelAnt) {
+                    if (modelAnt)
+                        return modelAnt.update(model);
+                    else
+                        return db.Pregunta.create(model);
+                });
+            }
         }
     });
 };
