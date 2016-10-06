@@ -9,7 +9,8 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8000
+        "port": 8080,
+        "redirect": false
       },
       "https":{
         "port": 8081
@@ -29,7 +30,8 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8000
+        "port": 8080,
+        "redirect": true
       },
       "https":{
         "port": 8081
@@ -49,7 +51,8 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8000
+        "port": 8080,
+        "redirect": true
       },
       "https":{
         "port": 8081
