@@ -1,8 +1,8 @@
 (function() {
 	angular.module('app').service('Http', function httpService($location, $http, EventHandler) {
 		var errorListeners = [];
-		//this.serverUrl = 'http://localhost:9000/api/';
-    this.serverUrl = '/api/';
+		this.serverUrl = 'http://localhost:8080/api/';
+    //this.serverUrl = '/api/';
 		this.post = function(relativRoute, body) {
 			var url = "POST " + this.serverUrl + relativRoute;
 			dev(url);
