@@ -1,3 +1,6 @@
+/**
+ * Controlador de los examenes
+ */
 (function () {
     angular.module('app').controller('ExamenesCtrl', function ($scope) {
         $scope.examen = {
