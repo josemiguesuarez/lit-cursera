@@ -94,13 +94,11 @@
             </md-toolbar>
             <md-content>
                 <div dir-auto-scroll
-                    style="width:100%;overflow: scroll;background: black">
+                    style="width:100%;overflow: scroll;background: black;padding:8px;">
 
                     <div ng-repeat="lineAndType in consoleLog track by $index"
-                        class="flexboxClass"
                         ng-class="lineAndType.tipo"
-                        style="padding:8px;">
-                        <div ng-class="{JM_correctCodeResultBullet: theme === 'correct-code', JM_wrongCodeResultBullet:  theme === 'wrong-code'}" />
+                        >
                         <div style="margin-left: 5px;">
                             {{lineAndType.linea}}
                         </div>

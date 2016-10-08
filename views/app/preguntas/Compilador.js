@@ -5,7 +5,6 @@
             return Http.post('compilador/compilar', {
                 code: code
             }).then(function(data) {
-                console.log(data);
                 function pushNewLines( newStr, tipo) {
                     var newArr = (newStr) ? newStr.split(new RegExp('\r?\n', 'g')) : [];
                     for (var i = 0; i < newArr.length; i++) {
@@ -15,12 +14,12 @@
                         });
                     }
                 }
+
                 pushNewLines( data.stdout, 'stdout');
                 pushNewLines( data.stderr, 'stderr');
                 pushNewLines( data.err, 'err');
-                console.log("array:", array)
-            });
 
+            });
         };
     });
 })();

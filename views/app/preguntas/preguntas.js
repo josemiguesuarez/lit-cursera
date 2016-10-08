@@ -11,6 +11,7 @@
         $scope.numero = ['1', '2', '3', '4'];
         $scope.respuesta = angular.copy($scope.pregunta.esqueleto);
         $scope.showImage = false;
+        $scope.consoleLog =[];
         $scope.undoRespuesta = function(ev) {
             var confirm = $mdDialog.confirm()
                 .title('¿Quieres deshacer tu código?')
@@ -37,7 +38,7 @@
         $scope.compilar = function() {
             $scope.compiling = true;
             var codigo = $scope.respuesta;
-
+            $scope.consoleLog = [];
             Compilador.compilar(codigo, $scope.consoleLog).then(function(){
               $scope.compiling = false;
             }, function(){

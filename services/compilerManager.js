@@ -52,9 +52,6 @@ module.exports = function(TEMP_DIR){
         return utils.createDirAndFile(generatedCWDName, JAVA_FILE_NAME, javaText).then(function(filePath){
             var compilerT = compiler(generatedCWDName);
             return compilerT.compile(JAVA_FILE_NAME);
-        }).then(function(resp){
-            console.log("COMPILER ANSWER:", resp);
-
         });
 
     }
