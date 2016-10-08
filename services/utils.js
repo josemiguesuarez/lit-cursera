@@ -111,6 +111,17 @@ utils.createDir =  function(dirName) {
 		});
 	});
 };
+/**
+ * Crea el direcotrio si no existe de manera sincrónica.
+ * @method createDirAndFile
+ * @param {String} dirName direcotrio a crear si no existe
+ */
+utils.ensureExists =  function(dirName) {
+	/* Se crea el directorio temporal si no existe */
+	if (!fs.existsSync(dirName)) {
+		fs.mkdirSync(dirName);
+	}
+};
 
 
 

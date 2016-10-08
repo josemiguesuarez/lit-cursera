@@ -4,6 +4,7 @@ var compiler = require("./compiler.js");
 var utils = require("./utils.js");
 
 module.exports = function(TEMP_DIR){
+    utils.ensureExists(TEMP_DIR);
     /**
      * Número máximo de solicitudes por milisegundo que se pueden aceptar.
      * @property MAX_NUM_REQUESTS
@@ -52,6 +53,9 @@ module.exports = function(TEMP_DIR){
         return utils.createDirAndFile(generatedCWDName, JAVA_FILE_NAME, javaText).then(function(filePath){
             var compilerT = compiler(generatedCWDName);
             return compilerT.compile(JAVA_FILE_NAME);
+        }).then(function(result){
+            utils.deleteFolderRecursive(generatedCWDName);
+            return result;
         });
 
     }
