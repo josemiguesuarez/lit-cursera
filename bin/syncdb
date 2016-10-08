@@ -7,10 +7,38 @@ var Promise = require('bluebird');
 generateData();
 
 function generateData() {
-	return db.sequelize.sync({
-		force: true
-	}).then(function() {
-
-	});
+    var examenCreated;
+    return db.sequelize.sync({
+        force: true
+    }).then(function() {
+        return db.Examen.create({
+            nombre: "Examen1",
+            enunciado: "Enunciado 1",
+            modeloMundo: "IMG",
+            descripcion: "Este es el examen 1"
+        });
+    }).then(function(examenCreatedP) {
+        examenCreated = examenCreatedP;
+        var promises = [];
+        for (var i = 1; i <= 5; i++) {
+            promises.push(examenCreated.createPregunta({
+                enunciado: "Enunciado pregunta " + i,
+                esqueleto: "Esqueleto Pregunta " + i
+            }, {
+                peso: 20,
+                numero: i
+            }));
+        }
+        return Promise.all(promises);
+    }).then(function() {
+		//Retorna las preguntas del exámen sin tener que buscar el exámen en la base de datos.
+		// Para ello crea una instancia emulada de un examen.
+        var examenEmulado = db.Examen.build({
+            id: examenCreated.id
+        });
+        return examenEmulado.getPreguntas();
+    }).then(function(preguntas) {
+        console.log(preguntas.toString());
+    });
 
 }

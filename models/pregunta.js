@@ -9,18 +9,8 @@ module.exports = function(sequelize, DataTypes) {
             field: 'enunciado',
             allowNull: false
         },
-        numero: {
-            type: DataTypes.INTEGER(),
-            field: 'numero',
-            allowNull: false
-        },
-        peso: {
-            type: DataTypes.DECIMAL(4,2),
-            field: 'peso',
-            allowNull: true
-        },
         esqueleto: {
-            type: DataTypes.TEXT() ,
+            type: DataTypes.TEXT(),
             field: 'esqueleto',
             allowNull: true
         },
@@ -29,7 +19,14 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: true,
         classMethods: {
             associate: function(dbP) {
-              db = dbP;
+                db = dbP;
+                db.Pregunta.belongsToMany(db.Examen, {
+                    through: db.Examen_pregunta,
+                    as: {
+                        singular: "examen",
+                        plural: "examenes"
+                    }
+                });
 
             },
             save: function(model) {

@@ -15,6 +15,13 @@ module.exports = function(sequelize, DataTypes) {
         classMethods: {
             associate: function(dbP) {
               db = dbP;
+              db.Estudiante.belongsToMany(db.Examen, {
+                  through: db.Estudiante_examen,
+                  as: {
+                      singular: "examen",
+                      plural: "examenes"
+                  }
+              });
 
             },
         }

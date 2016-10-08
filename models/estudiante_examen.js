@@ -3,20 +3,18 @@
 
 module.exports = function(sequelize, DataTypes) {
     var defaultInclude, db;
-    return sequelize.define("EstudianteExamen", {
+    return sequelize.define("Estudiante_examen", {
         calificacion: {
             type: DataTypes.REAL(2),
             field: 'enunciado',
             allowNull: false
         }
     }, {
-        timestamps: true,
+        timestamps: false,
         freezeTableName: true,
         classMethods: {
             associate: function(dbP) {
-              db = dbP
-              db.EstudianteExamen.belongsTo(db.Estudiante,{as:'estudiante', foreignKey:{allowNull:false}});
-              db.EstudianteExamen.belongsTo(db.Examen,{as:'examen', foreignKey:{allowNull:false}});
+              db = dbP;
             },
         }
     });

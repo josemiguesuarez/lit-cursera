@@ -9,11 +9,6 @@ module.exports = function(sequelize, DataTypes) {
             field: 'nombre',
             allowNull: false
         },
-        peso: {
-            type: DataTypes.REAL(2),
-            field: 'peso',
-            allowNull: false
-        },
         enunciado: {
             type: DataTypes.TEXT(),
             field: 'enunciado',
@@ -35,8 +30,25 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true,
         classMethods: {
             associate: function(dbP) {
-              db = dbP;
-
+                db = dbP;
+                db.Examen.belongsToMany(db.Pregunta, {
+                    through: db.Examen_pregunta,
+                    as: {
+                        singular: "pregunta",
+                        plural: "preguntas"
+                    }
+                });
+                db.Examen.belongsToMany(db.Estudiante, {
+                    through: db.Estudiante_examen,
+                    as: {
+                        singular: "estudiante",
+                        plural: "estudiantes"
+                    }
+                });
+                defaultInclude = {
+                    model: db.Pregunta,
+                    as: 'preguntas',
+                };
             },
         }
     });
