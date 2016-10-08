@@ -19,11 +19,11 @@ module.exports = function(sequelize, DataTypes) {
             field: 'peso',
             allowNull: true
         },
-        estado: {
-            type: DataTypes.STRING(20),
-            field: 'estado',
+        esqueleto: {
+            type: DataTypes.TEXT() ,
+            field: 'esqueleto',
             allowNull: true
-        }
+        },
 
     }, {
         timestamps: true,
