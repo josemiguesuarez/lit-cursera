@@ -1,6 +1,6 @@
 (function() {
     angular.module('app').service('Apuesta', service);
-    function service ($rootScope, $http, Upload, EventHandler ) {
+    function service ($rootScope, Upload, EventHandler ) {
         self = this;
         self.upload = function(file, progressCallback, endCallback) {
             Upload.upload({

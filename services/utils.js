@@ -1,3 +1,5 @@
+var path = require("path");
+var fs = require("fs");
 var utils = {};
 
 utils.getterFromPost = function(req) {
@@ -56,6 +58,71 @@ utils.error = function(message, status) {
 	error.status = status;
 	return error;
 };
+
+utils.deleteFolderRecursive = deleteFolderRecursive;
+function deleteFolderRecursive(pathP) {
+	if (fs.existsSync(pathP)) {
+		if (fs.statSync(pathP).isDirectory()) {
+			fs.readdirSync(pathP).forEach(function(file) {
+				var curPath = path.join(pathP, file);
+				deleteFolderRecursive(curPath);
+			});
+			fs.rmdirSync(pathP);
+		} else {
+			fs.unlinkSync(pathP);
+		}
+	}
+}
+
+/**
+ * Crea un direcotrio y archivo con el contenido especificado.
+ * @method createDirAndFile
+ * @param {String} dirName Directorio Actual de Trabajo
+ * @param {String} fileName Nombre del archivo a crear
+ * @param {String} fileContent Contenido del archivo que se va a crear
+ * @return {Promise} promesa
+ */
+utils.createDirAndFile =  function(dirName, fileName, fileContent) {
+	return new Promise(function(resolve, reject) {
+		fs.mkdir(dirName, function(err) {
+			if (err) return reject(err);
+			var filePath = path.join(dirName, fileName);
+			fs.writeFile(filePath, fileContent, function(err) {
+				if (err) return reject(err);
+				resolve(filePath);
+			});
+		});
+	});
+};
+
+/**
+ * Crea un direcotrio y archivo con el contenido especificado.
+ * @method createDirAndFile
+ * @param {String} dirName Directorio Actual de Trabajo
+ * @param {String} fileName Nombre del archivo a crear
+ * @param {String} fileContent Contenido del archivo que se va a crear
+ * @return {Promise} promesa
+ */
+utils.createDir =  function(dirName) {
+	return new Promise(function(resolve, reject) {
+		fs.mkdir(dirName, function(err) {
+			if (err) return reject(err);
+			resolve(dirName);
+		});
+	});
+};
+/**
+ * Crea el direcotrio si no existe de manera sincrónica.
+ * @method createDirAndFile
+ * @param {String} dirName direcotrio a crear si no existe
+ */
+utils.ensureExists =  function(dirName) {
+	/* Se crea el directorio temporal si no existe */
+	if (!fs.existsSync(dirName)) {
+		fs.mkdirSync(dirName);
+	}
+};
+
 
 
 module.exports = utils;

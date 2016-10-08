@@ -8,6 +8,7 @@
     <!-- Optimize mobile viewport -->
     <title>CupiExámenes</title>
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" type="text/css">
+    <link rel="stylesheet" href="bower_components/angular-resizable/angular-resizable.min.css" type="text/css">
     <link rel="stylesheet" href="css/css.css" type="text/css">
     <link rel="stylesheet" href="css/eclipse.css" type="text/css">
     <link rel="shortcut icon" href="favico.png" type="image/png">
@@ -19,9 +20,9 @@
     <!-- Vista de la aplicación con Angular.js-->
     <dir-global></dir-global>
     <div layout="row">
-        <span flex="20"></span>
+        <span flex-gt-sm="5"></span>
         <div ng-view flex></div>
-        <span flex="20"></span>
+        <span flex-gt-sm="5"></span>
     </div>
     <!-- Librerías -->
     <!-- Librerías locales -->
@@ -37,10 +38,13 @@
     <script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
     <script src="bower_components/ace-builds/src-min-noconflict/ext-language_tools.js"></script>
     <script src="bower_components/angular-ui-ace/ui-ace.js"></script>
+    <script src="bower_components/jquery-ui-layout/source/stable/jquery.layout.min.js"></script>
+    <script src="bower_components/angular-resizable/angular-resizable.min.js"></script>
     <!-- Archivos de la aplicación Angular.js -->
     <script src="app/app.js"></script>
     <!-- Controllers  -->
     <script src="app/global/global.js"></script>
+    <script src="app/global/Http.js"></script>
     <script src="app/global/EventHandler.js"></script>
     <script src="app/login/login.js"></script>
     <script src="app/login/User.js"></script>
@@ -49,9 +53,11 @@
     <script src="app/sorteos/sorteos.js"></script>
     <script src="app/sorteos/Sorteo.js"></script>
     <script src="app/preguntas/preguntas.js"></script>
+    <script src="app/preguntas/Compilador.js"></script>
     <script src="app/preguntas/Pregunta.js"></script>
     <script src="app/calificaciones/calificaciones.js"></script>
     <script src="app/examenes/examenes.js"></script>
+    <script src="app/examenes/examenesNavegation.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,15 @@
 .ace_editor {
-    height: 200px;
-    margin: 10px;
+    height: 300px;
+}
+.stdout{
+  font-size: 14px;
+  color: white ;
+}
+.stderr{
+  color: #C00000 ;
+  font-size: 14px;
+}
+.err{
+  color:#FF0000 ;
+  font-size: 14px;
 }

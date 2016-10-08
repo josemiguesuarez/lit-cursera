@@ -23,9 +23,17 @@ module.exports = function(sequelize, DataTypes) {
         timestamps: true,
         classMethods: {
             associate: function(dbP) {
-              db = dbP
+              db = dbP;
               db.Respuesta.belongsTo(db.Pregunta,{as:'pregunta', foreignKey:{allowNull:false}});
             },
+            save: function(model) {
+                return db.Respuesta.findById(model.id).then(function(modelAnt) {
+                    if (modelAnt)
+                        return modelAnt.update(model);
+                    else
+                        return db.Respuesta.create(model);
+                });
+            }
         }
     });
 };

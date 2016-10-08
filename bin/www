@@ -1,47 +1,49 @@
 #!/usr/bin/env node
 
 var env = process.env.NODE_ENV || "development";
-var config = require(__dirname + '/../config/config.json')[env];
+var config = require('../config/');
 var debug = require('debug')('cupireservas');
 var express = require('express');
-var app = require('../app');
+
 var https = require('https');
 var http = require('http');
-var fs = require('fs');
-var path = require('path');
+var db = require("../models");
 var Promise = require('bluebird');
-var httpPort = process.env.PORT || 5443;
-
-var privateKey;
-var certificate;
-
-/*if (env === "production") {
-	privateKey = fs.readFileSync('/etc/pki/tls/private/virtual/myserver.key');
-	certificate = fs.readFileSync('/etc/pki/tls/certs/virtual/STAR_virtual_uniandes_edu_co.crt');
-} else {
-	privateKey = fs.readFileSync(path.join("config", "sslcert", "server.key"));
-	certificate = fs.readFileSync(path.join("config", "sslcert", "server.crt"));
-}
-var credentials = {
-	key: privateKey,
-	cert: certificate
-};*/
+var httpPort = process.env.PORT || config.server.http.port;
+var httpsPort = config.server.https.port;
 
 
-// Se crea una app de express para redireccionar el tráfico http a https.
-/*var httpServer;
-httpServer = http.createServer(app); //
-httpServer.listen(httpPort, function() {
+
+
+db.sequelize.sync().then(function() {
+	/* listen (start app with node server.js) ====================================== */
+  if(!process.env.PORT){
+    var credentials = {
+    	key: config.server.https.privateKey,
+    	cert: config.server.https.certificate
+    };
+
+  	var httpsServer = https.createServer(credentials, app);
+  	httpsServer.listen(httpsPort, function() {
+  		console.log("https server listen on ", httpsPort, "port");
+  	});
+  }
+
+
+	// Se crea una app de express para redireccionar el tráfico http a https.
+	var httpServer;
+  var app;
+	if(config.server.http.redirect){
+		app = express();
+		app.all('*', function(req, res) {
+			return res.redirect("https://" + req.headers.host + req.url);
+		});
+	} else {
+		app = require('../app');
+	}
+  httpServer = http.createServer(app);
+  httpServer.listen(httpPort, function() {
     console.log("http server listen on", httpPort, "port");
-});*/
+  });
 
-var privateKey = fs.readFileSync(path.join("config", "sslcert", "server.key"));
-var certificate = fs.readFileSync(path.join("config", "sslcert", "server.cert"));
-var credentials = {
-    key: privateKey,
-    cert: certificate
-};
-var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(httpPort, function() {
-    console.log("https server listen on ", httpPort, "port");
 });
