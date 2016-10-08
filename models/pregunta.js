@@ -9,6 +9,11 @@ module.exports = function(sequelize, DataTypes) {
             field: 'enunciado',
             allowNull: false
         },
+        nombre: {
+            type: DataTypes.STRING(20),
+            field: 'nombre',
+            allowNull: true
+        },
         numero: {
             type: DataTypes.INTEGER(),
             field: 'numero',
@@ -23,6 +28,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING(20),
             field: 'estado',
             allowNull: true
+        },
+        tipoid: {
+          type: DataTypes.INTEGER(),
+          field: 'tipoid',
+          allowNull: false
         }
 
     }, {
