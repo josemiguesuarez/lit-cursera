@@ -1,6 +1,6 @@
-/*var checkLoggedin = function($q, $timeout, $http, $location, $rootScope, User) {
+/*var checkLoggedin = function($q, $timeout, Http, $location, $rootScope, User) {
     var deferred = $q.defer();
-    $http.get('/loggedin').success(function(user) {
+    Http.get('/loggedin').then(function(user) {
         if (user === '0') {
             $timeout(function() {
                 deferred.reject();
@@ -15,8 +15,17 @@
     });
 };*/
 
-var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ui.ace']);
+/**
+ * Se declara el modulo de la aplicacion y sus dependencias
+ * @type {angular.Module}
+ */
+var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ui.ace', 'angularResizable']);
 
+/**
+ * Configuracion del modulo de la aplicacion
+ * Se determina el tema usado por Angular Material
+ * Se determinan las rutas de la aplicacion
+ */
 app.config(function($routeProvider, $httpProvider, $mdThemingProvider) {
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
     moment.locale('es');

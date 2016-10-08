@@ -1,6 +1,6 @@
 var app = angular.module('app');
 
-app.controller('LoginCtrl', function($rootScope, $scope, $http, $location, $route, $mdDialog, User, EventHandler) {
+app.controller('LoginCtrl', function($rootScope, $scope, $location, $route, $mdDialog, User, EventHandler) {
 
     User.checkLoggedin();
     $scope.userLogin = {};

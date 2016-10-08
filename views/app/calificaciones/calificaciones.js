@@ -1,3 +1,6 @@
+/**
+ * Controlador de las aplicaciones
+ */
 (function() {
     angular.module('app').controller('CalificacionesCtrl', function ($scope) {
         $scope.calificacion={

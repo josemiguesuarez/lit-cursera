@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
         texto: data.get('texto', 'Debe enviar una respuesta con contenido'),
         preguntaId: data.get('preguntaId', 'La respuesta debe pertenecer a una pregunta')
     };
-    console.log("texto"+respuesta);
+    console.log("texto", respuesta);
     db.Respuesta.create(respuesta).then(function(resp) {
        return res.send(resp);
     }).catch(next);

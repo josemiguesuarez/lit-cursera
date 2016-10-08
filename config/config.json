@@ -9,11 +9,13 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8000
+        "port": 8080,
+        "redirect": false
       },
       "https":{
         "port": 8081
-      }
+      },
+      "allowCORS": true
     },
     "session":{
       "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
@@ -29,11 +31,13 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8000
+        "port": 8080,
+        "redirect": true
       },
       "https":{
         "port": 8081
-      }
+      },
+      "allowCORS": false
     },
     "session":{
       "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
@@ -49,11 +53,13 @@
     "logging":false,
     "server":{
       "http":{
-        "port": 8000
+        "port": 8080,
+        "redirect": true
       },
       "https":{
         "port": 8081
-      }
+      },
+      "allowCORS": false
     },
     "session":{
       "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
