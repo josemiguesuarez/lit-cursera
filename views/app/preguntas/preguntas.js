@@ -3,22 +3,52 @@
      * Controlador de las preguntas
      */
     angular.module('app').controller('PreguntasCtrl', function($scope, $mdDialog, $routeParams, Examen, Pregunta, Compilador) {
+        /**
+         * Se inicializa la información de la pregunta
+         */
         Examen.getExamen($routeParams.examenId).then(
             function (response) {
-                console.log(response);
+                //Se obtiene la información del examen
                 $scope.examen = response;
+                Pregunta.getPreguntasByExamen($routeParams.examenId).then(
+                    function (response) {
+                        //Se obtienen las preguntas del exámen
+                        $scope.examen.preguntas = response;
+                        //Arreglo de números de preguntas
+                        $scope.numeros = [];
+                        //Arreglo de las respuestas del usuario a las preguntas
+                        $scope.respuestas = new Array(response.length);
+                        for(var i = 0; i < response.length; i++) {
+                            //Se llena la información del arreglo de número de preguntas
+                            $scope.numeros.push(String(i+1));
+                            //Se inicializa el arreglo de respuestas
+                            $scope.respuestas[i] = angular.copy(response[i].esqueleto);
+                            //Si la pregunta es la primera pregunta se inicializan los atributos del scope
+                            if(response[i].Examen_pregunta.numero==1) {
+                                $scope.pregunta = response[i];
+                                console.log($scope.pregunta);
+                                $scope.respuesta = $scope.respuestas[i];
+                                $scope.preguntaActual = i;
+                            }
+                        }
+                    }
+                )
             }
         )
-        $scope.pregunta = {
-            "id": 1,
-            "numero": 1,
-            "enunciado": "Esto es un mock del enunciado de una pregunta",
-            "porcentaje": 20,
-            "esqueleto": "esto es codigo esqueleto"
-        };
-        $scope.imagen = "https://users.dcc.uchile.cl/~psalinas/uml/img/modelo/herencia2.jpg";
-        $scope.numero = ['1', '2', '3', '4'];
-        $scope.respuesta = angular.copy($scope.pregunta.esqueleto);
+        /**
+         * Método encargado de cambiar la pregunta actual
+         * @param preguntaNum {Integer} El numero de la nueva pregunta
+         */
+        $scope.cambiarPregunta = function (preguntaNum) {
+            $scope.respuestas[$scope.preguntaActual] = angular.copy($scope.respuesta)
+            for(var i = 0; i < $scope.examen.preguntas.length; i++) {
+                if(preguntaNum==$scope.examen.preguntas[i].Examen_pregunta.numero) {
+                    $scope.preguntaActual = i;
+                    $scope.pregunta = $scope.examen.preguntas[i];
+                    $scope.respuesta = angular.copy($scope.respuestas[i]);
+                }
+            }
+        }
         $scope.showImage = false;
         $scope.consoleLog =[];
         /**
@@ -30,7 +60,7 @@
             var confirm = $mdDialog.confirm()
                 .title('¿Quieres deshacer tu código?')
                 .textContent('Tu respuesta será borrada y solo quedará el esqueleto de la pregunta')
-                .ariaLabel('Lucky day')
+                .ariaLabel('Borrar')
                 .targetEvent(ev)
                 .ok('Quiero borrarlo')
                 .cancel('Volver');
@@ -67,7 +97,6 @@
             }, function(){
               $scope.compiling = false;
             });
-
         };
     });
 })();

@@ -6,6 +6,7 @@
         Examen.getExamen(1).then(
             function (response) {
                 $scope.examen=response;
+                console.log($scope.examen);
             }
         )
     })

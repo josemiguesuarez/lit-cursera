@@ -12,9 +12,9 @@ function generateData() {
         force: true
     }).then(function() {
         return db.Examen.create({
-            nombre: "Examen1",
+            nombre: "Examen 1",
             enunciado: "Enunciado 1",
-            modeloMundo: "IMG",
+            modeloMundo: "http://i.imgur.com/06cMtIA.png",
             descripcion: "Este es el examen 1"
         });
     }).then(function(examenCreatedP) {

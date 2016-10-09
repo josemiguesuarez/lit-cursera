@@ -42,7 +42,7 @@ app.config(function($routeProvider, $httpProvider, $mdThemingProvider) {
             controller: 'CalificacionesCtrl',
             templateUrl: 'app/calificaciones/calificaciones.html'
         })
-        .when('/examenes/:examenId/preguntas/:preguntaNum', {
+        .when('/examenes/:examenId/preguntas', {
             controller: 'PreguntasCtrl',
             templateUrl: 'app/preguntas/preguntas.html',
             /*resolve: {

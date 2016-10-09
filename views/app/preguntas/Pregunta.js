@@ -10,7 +10,10 @@
          * @returns {*}
          */
         self.guardarRespuesta = function(respuesta) {
-            return Http.post("respuestas", respuesta);
+            return Http.post('respuestas', respuesta);
         };
+        self.getPreguntasByExamen = function (examenId) {
+            return Http.get('preguntas/examen/'+examenId);
+        }
     });
 })();
