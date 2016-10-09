@@ -2,7 +2,13 @@
     /**
      * Controlador de las preguntas
      */
-    angular.module('app').controller('PreguntasCtrl', function($scope, $mdDialog, Pregunta, Compilador) {
+    angular.module('app').controller('PreguntasCtrl', function($scope, $mdDialog, $routeParams, Examen, Pregunta, Compilador) {
+        Examen.getExamen($routeParams.examenId).then(
+            function (response) {
+                console.log(response);
+                $scope.examen = response;
+            }
+        )
         $scope.pregunta = {
             "id": 1,
             "numero": 1,
