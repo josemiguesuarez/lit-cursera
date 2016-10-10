@@ -5,7 +5,10 @@ var Promise = require('bluebird');
 var express = require('express');
 var router = express.Router();
 
-
+/**
+ * Método que define el comportamiento de una solicitud Post a la ruta '/respuestas'
+ * Se encarga de guardar la respuesta de un estudiante en el servidor
+ */
 router.post('/', function(req, res, next) {
     var data = utils.getterFromPost(req);
     var respuesta = {

@@ -1,3 +1,6 @@
+/**
+ * Servicio encargado de hacer handling de errores en la aplicación
+ */
 (function() {
     angular.module('app').service('EventHandler', function errorHandler($location) {
         var errorListeners = [];

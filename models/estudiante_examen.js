@@ -1,6 +1,11 @@
 /*jslint node: true */
 "use strict";
-
+/**
+ * Define la tabla que maneja la relación entre un estudiante y un examen
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|{}}
+ */
 module.exports = function(sequelize, DataTypes) {
     var defaultInclude, db;
     return sequelize.define("Estudiante_examen", {

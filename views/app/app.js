@@ -25,6 +25,7 @@ var app = angular.module('app', ['ngRoute', 'ngMaterial', 'ui.ace', 'angularResi
  * Configuracion del modulo de la aplicacion
  * Se determina el tema usado por Angular Material
  * Se determinan las rutas de la aplicacion
+ * incluyendo los templates a usar en cada una y el controlador correspondiente
  */
 app.config(function($routeProvider, $httpProvider, $mdThemingProvider) {
     $mdThemingProvider.theme('dark-blue').backgroundPalette('blue').dark();
@@ -47,20 +48,6 @@ app.config(function($routeProvider, $httpProvider, $mdThemingProvider) {
             templateUrl: 'app/preguntas/preguntas.html',
             /*resolve: {
                 loggedin: checkLoggedin
-            }*/
-        })
-        .when('/apuestas', {
-            controller: 'ApuestasCtrl',
-            templateUrl: 'app/apuestas/apuestas.html',
-            /*resolve: {
-            	loggedin: checkLoggedin
-            }*/
-        })
-        .when('/sorteos', {
-            controller: 'SorteosCtrl',
-            templateUrl: 'app/sorteos/sorteos.html',
-            /*resolve: {
-            	loggedin: checkLoggedin
             }*/
         })
         .otherwise({

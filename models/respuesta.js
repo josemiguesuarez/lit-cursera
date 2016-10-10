@@ -1,8 +1,14 @@
 /*jslint node: true */
 "use strict";
-
+/**
+ * Modelo para las respuestas de un estudiante en la base de datos
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|{}}
+ */
 module.exports = function(sequelize, DataTypes) {
     var defaultInclude, db;
+    //Se definen los campos que tiene una rrespuesta en la base de datos
     return sequelize.define("Respuesta", {
         calificacion: {
             type: DataTypes.DECIMAL(8,4),

@@ -1,8 +1,14 @@
 /*jslint node: true */
 "use strict";
-
+/**
+ * Define el modelo de una pregunta
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|{}}
+ */
 module.exports = function(sequelize, DataTypes) {
     var defaultInclude, db;
+    //Se definen los campos que tendrá una pregunta en la base de datos
     return sequelize.define("Pregunta", {
         enunciado: {
             type: DataTypes.STRING(2500),

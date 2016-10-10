@@ -10,7 +10,9 @@ app.service('utils', function() {
     };
 
 });
-
+/**
+ * Directiva de funcionalidad y elementos globales para la aplicación
+ */
 app.directive('dirGlobal', function(){
   return {
     restrict: 'E',

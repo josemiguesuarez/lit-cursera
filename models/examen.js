@@ -1,8 +1,14 @@
 /*jslint node: true */
 "use strict";
-
+/**
+ * Define el modelo de un examen
+ * @param sequelize
+ * @param DataTypes
+ * @returns {*|{}}
+ */
 module.exports = function(sequelize, DataTypes) {
     var defaultInclude, db;
+    //Se definen los campos de un examen
     return sequelize.define("Examen", {
         nombre: {
             type: DataTypes.STRING(250),
