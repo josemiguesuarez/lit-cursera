@@ -3,6 +3,9 @@
 var debug = require('debug')('cupireservas');
 var db = require("../models");
 var Promise = require('bluebird');
+var fs = require("fs");
+var joe = require("../worker/java-object-extractor");
+var jor = require("../worker/java-object-replacer");
 
 generateData();
 
@@ -10,6 +13,32 @@ function generateData() {
     var examenCreated;
     return db.sequelize.sync({
         force: true
+    }).then(function(){
+        return new Promise(function(resolve, reject){
+            fs.readFile("./worker/Marca.java", function(err, buffer) {
+                if (err) return reject(err);
+
+                codigoSolucion = buffer.toString();
+                fragmentos = joe.obtenerObjetos(codigoSolucion);
+
+                db.CodigoSolucion.upsert({
+                    id: 1,
+                    codigo: codigoSolucion
+                }).then(function(wasInserted){
+                    fragmentos.forEach(function(fragmento){
+                        fragmento.CodigoSolucionId = 1;
+                    });
+                    console.log("insertOrUpdate:", wasInserted);
+                    if(wasInserted){
+                        return db.FragmentoCodigo.bulkCreate(fragmentos).catch(function(){
+                            console.log("Los fragmentos de código ya están en la base de datos");
+                        });
+                    }
+                }).then(function(){
+                    resolve();
+                });
+            });
+        });
     }).then(function() {
         return db.Examen.create({
             nombre: "Examen 1",
@@ -23,7 +52,8 @@ function generateData() {
         for (var i = 1; i <= 5; i++) {
             promises.push(examenCreated.createPregunta({
                 enunciado: "Enunciado pregunta " + i,
-                esqueleto: "Esqueleto Pregunta " + i
+                esqueleto: "Esqueleto Pregunta " + i,
+                FragmentoCodigoId: 1
             }, {
                 peso: 20,
                 numero: i

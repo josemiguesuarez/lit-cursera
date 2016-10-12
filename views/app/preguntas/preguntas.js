@@ -92,7 +92,7 @@
             $scope.compiling = true;
             var codigo = $scope.respuesta;
             $scope.consoleLog = [];
-            Compilador.compilar(codigo, $scope.consoleLog).then(function(){
+            Compilador.compilar($scope.pregunta.id, codigo, $scope.consoleLog).then(function(){
               $scope.compiling = false;
             }, function(){
               $scope.compiling = false;

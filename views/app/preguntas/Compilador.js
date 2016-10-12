@@ -10,9 +10,10 @@
          * @param array Arreglo en donde se devolverán los mensajes dados como respuesta por el compilador
          * @returns {*}
          */
-        self.compilar = function(code, array) {
+        self.compilar = function(preguntaId, code, array) {
             return Http.post('compilador/compilar', {
-                code: code
+                code: code,
+                preguntaId: preguntaId
             }).then(function(data) {
                 function pushNewLines( newStr, tipo) {
                     var newArr = (newStr) ? newStr.split(new RegExp('\r?\n', 'g')) : [];

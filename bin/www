@@ -8,12 +8,13 @@ var express = require('express');
 var https = require('https');
 var http = require('http');
 var db = require("../models");
+var calificador = require("../worker/calificador");
 var Promise = require('bluebird');
 var httpPort = process.env.PORT || config.server.http.port;
 var httpsPort = config.server.https.port;
 
 
-
+calificador.cargarSolucion();
 
 db.sequelize.sync().then(function() {
 	/* listen (start app with node server.js) ====================================== */

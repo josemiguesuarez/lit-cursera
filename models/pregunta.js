@@ -34,6 +34,7 @@ module.exports = function(sequelize, DataTypes) {
                         plural: "examenes"
                     }
                 });
+                db.Pregunta.belongsTo(db.FragmentoCodigo);
 
             },
             save: function(model) {

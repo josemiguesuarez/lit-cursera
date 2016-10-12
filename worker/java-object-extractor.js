@@ -1,3 +1,4 @@
+exports.obtenerObjetos = obtenerObjetos;
 function obtenerObjetos(clase) {
     var offsetClass = clase.indexOf(" class ");
 
@@ -52,16 +53,16 @@ function obtenerObjetos(clase) {
     while (i < finZonaAtributos) {
         var posPuntoComa = darPosicionAdelante(';', clase, i);
         var posFinLinea = darPosicionAtras('\n', clase, posPuntoComa);
-
+        var indicesAtributos;
         if (posFinLinea > posPuntoComa) {
             atributos.push(clase.substring(i + 1, posPuntoComa).trim());
-            var indicesAtributos = {
+            indicesAtributos = {
                 inicio: i + 1,
                 fin: posPuntoComa
             };
         }
         else {
-            var indicesAtributos = {
+            indicesAtributos = {
                 inicio: i + 1,
                 fin: posPuntoComa
             };
@@ -93,7 +94,7 @@ function obtenerObjetos(clase) {
         return {
             inicio: inicio,
             fin: fin
-        }//clase.substring(inicio, fin).trim();
+        };//clase.substring(inicio, fin).trim();
     }
 
     function darNombreMetodo(indice, cadena) {
@@ -170,5 +171,3 @@ function obtenerObjetos(clase) {
         return i;
     }
 }
-
-exports.obtenerObjetos = obtenerObjetos;
