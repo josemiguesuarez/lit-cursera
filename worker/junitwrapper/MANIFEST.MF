@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Class-Path: . cupiExamenesTest_lib/hamcrest-core-1.3.jar cupiExamenesT
+ est_lib/junit-4.12.jar cupiExamenesTest_lib/gson-2.3.1.jar classes/
+Main-Class: co.edu.uniandes.CumpiExamen.TestRunner
+

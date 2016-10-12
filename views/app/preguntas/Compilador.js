@@ -31,5 +31,17 @@
 
             });
         };
+        /**
+         * Método encargado de realizar la petición de compilación de código al servidor
+         * @param code El código a compilar
+         * @param array Arreglo en donde se devolverán los mensajes dados como respuesta por el compilador
+         * @returns {*}
+         */
+        self.calificar = function(preguntaId, code, array) {
+            return Http.post('compilador/calificar', {
+                code: code,
+                preguntaId: preguntaId
+            });
+        };
     });
 })();

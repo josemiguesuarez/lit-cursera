@@ -3,7 +3,7 @@ package solucion;
 public class Vehiculo {
 	private int kilometrosRecorridos;
 
-	public void inicializar()
+public void inicializar()
 	{
 		kilometrosRecorridos = 5;
 	}

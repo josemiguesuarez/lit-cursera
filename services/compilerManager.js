@@ -17,7 +17,7 @@ module.exports = function(TEMP_DIR){
 	 * @property JAVA_FILE_NAME
 	 * @type {String}
 	 */
-	var JAVA_FILE_NAME = "file.java";
+	var JAVA_FILE_NAME = "Vehiculo.java";
 
     /**
      * Contador que permite identificar la solicitud en conjunto con el timepo en el que se realizó.
@@ -37,14 +37,11 @@ module.exports = function(TEMP_DIR){
         return new Date().getTime() + '_' + (requestCount++);
     }
     /**
-     * Crea un id para la solicitud con el timepo actual y un contador adicional.
-     * @method createRequestId
+     * Genera un nombre para el directorio de trabajo actual.
+     * @method generateCWDName
      */
     function generateCWDName() {
-        if (requestCount >= MAX_NUM_REQUESTS) {
-            requestCount = 0;
-        }
-        var requestId = new Date().getTime() + '_' + (requestCount++);
+        var requestId = createRequestId();
         return path.join(TEMP_DIR, requestId);
     }
 
@@ -54,7 +51,7 @@ module.exports = function(TEMP_DIR){
             var compilerT = compiler(generatedCWDName);
             return compilerT.compile(JAVA_FILE_NAME);
         }).then(function(result){
-            utils.deleteFolderRecursive(generatedCWDName);
+            //utils.deleteFolderRecursive(generatedCWDName);
             return result;
         });
 

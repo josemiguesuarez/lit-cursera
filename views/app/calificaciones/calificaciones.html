@@ -1,14 +1,14 @@
  <md-toolbar md-scroll-shrink>
     <div class="md-toolbar-tools" layout="row">
         <h3>
-            <span>Pregunta {{calificacion.pregunta.numero}}</span>
+            <span>Pregunta {{calificacion.pregunta.Examen_pregunta.numero}}</span>
         </h3>
         <span flex></span>
         <h3 flex="10">
             {{calificacion.nota}}
         </h3>
         <h3 flex="10">
-            {{calificacion.pregunta.porcentaje}}%
+            {{calificacion.pregunta.Examen_pregunta.peso}}%
         </h3>
     </div>
 </md-toolbar>
@@ -17,7 +17,7 @@
     <md-list>
         <md-list-item class="md-3-line" ng-repeat="punto in calificacion.retroalimentacion" ng-click="null">
             <div class="md-list-item-text" layout="column">
-                <p>{{punto.mensaje}}</p>
+                <p>{{punto}}</p>
             </div>
         </md-list-item>
     </md-list>

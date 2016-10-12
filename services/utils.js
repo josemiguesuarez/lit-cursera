@@ -96,6 +96,25 @@ utils.createDirAndFile =  function(dirName, fileName, fileContent) {
 };
 
 /**
+ * Crea un archivo con el contenido especificado y en el direcotrio especificado.
+ * @method createDirAndFile
+ * @param {String} dirName Directorio Actual de Trabajo
+ * @param {String} fileName Nombre del archivo a crear
+ * @param {String} fileContent Contenido del archivo que se va a crear
+ * @return {Promise} promesa
+ */
+utils.createFile =  function(dirName, fileName, fileContent) {
+	return new Promise(function(resolve, reject) {
+
+			var filePath = path.join(dirName, fileName);
+			fs.writeFile(filePath, fileContent, function(err) {
+				if (err) return reject(err);
+				resolve(filePath);
+			});
+	});
+};
+
+/**
  * Crea un direcotrio y archivo con el contenido especificado.
  * @method createDirAndFile
  * @param {String} dirName Directorio Actual de Trabajo

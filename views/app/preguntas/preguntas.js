@@ -2,7 +2,7 @@
     /**
      * Controlador de las preguntas
      */
-    angular.module('app').controller('PreguntasCtrl', function($scope, $mdDialog, $routeParams, Examen, Pregunta, Compilador) {
+    angular.module('app').controller('PreguntasCtrl', function($scope, $mdDialog, $routeParams, $location, Examen, Pregunta, Compilador, Calificacion) {
         /**
          * Se inicializa la información de la pregunta
          */
@@ -32,15 +32,15 @@
                             }
                         }
                     }
-                )
+                );
             }
-        )
+        );
         /**
          * Método encargado de cambiar la pregunta actual
          * @param preguntaNum {Integer} El numero de la nueva pregunta
          */
         $scope.cambiarPregunta = function (preguntaNum) {
-            $scope.respuestas[$scope.preguntaActual] = angular.copy($scope.respuesta)
+            $scope.respuestas[$scope.preguntaActual] = angular.copy($scope.respuesta);
             for(var i = 0; i < $scope.examen.preguntas.length; i++) {
                 if(preguntaNum==$scope.examen.preguntas[i].Examen_pregunta.numero) {
                     $scope.preguntaActual = i;
@@ -48,7 +48,7 @@
                     $scope.respuesta = angular.copy($scope.respuestas[i]);
                 }
             }
-        }
+        };
         $scope.showImage = false;
         $scope.consoleLog =[];
         /**
@@ -74,14 +74,15 @@
          * Método encargado de enviar la respuesta al servidor
          */
         $scope.enviar = function() {
-            //Se crea el objeto de la respuesta
-            var respuesta = {
-                texto: $scope.respuesta,
-                preguntaId: $scope.pregunta.id
-            };
+
             //Se envía la respuesta por el servicio
-            Pregunta.guardarRespuesta(respuesta).then(function(data) {
-                console.log(data);
+            Compilador.calificar($scope.pregunta.id, $scope.respuesta).then(function(data) {
+                console.log("Calificación:", data);
+                data.pregunta = $scope.pregunta;
+                Calificacion.setCalificacion(data);
+                console.log("Calificación", data)
+
+                $location.url("/calificaciones");
             });
         };
 
