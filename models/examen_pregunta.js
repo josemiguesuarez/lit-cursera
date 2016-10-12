@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         },
         peso: {
-            type: DataTypes.DECIMAL(4, 2),
+            type: DataTypes.DECIMAL(5, 2),
             field: 'peso',
             allowNull: true
         }

@@ -1,12 +1,18 @@
-<div layout="column" layout-align="center center">
-    <h1>{{examen.nombre}}</h1>
-    <md-content>
-        <p>{{examen.enunciado}}</p>
-    </md-content>
-    <md-card>
-        <img ng-src="{{examen.modeloMundo}}">
-    </md-card>
-    <div layout="row" layout-align="center center">
-        <md-button class="md-primary md-raised" ng-href="#examenes/{{examen.id}}/preguntas">Ver preguntas</md-button>
+
+
+<div layout="row">
+    <span flex ="10" flex-gt-xs="40" flex-gt-sm="90" flex-gt-md="100"></span>
+    <div layout="column" layout-align="center center">
+        <h1>{{examen.nombre}}</h1>
+        <md-content>
+            <p>{{examen.enunciado}}</p>
+        </md-content>
+        <md-card>
+            <img ng-src="{{examen.modeloMundo}}">
+        </md-card>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-primary md-raised" ng-href="#examenes/{{examen.id}}/preguntas">Ver preguntas</md-button>
+        </div>
     </div>
+    <span flex ="10" flex-gt-xs="40" flex-gt-sm="90" flex-gt-md="100"></span>
 </div>

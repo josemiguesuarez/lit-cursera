@@ -7,20 +7,21 @@
         style="margin: 8px;">
         <div layout="row">
             <div layout-align="top center"
-                 layout="column">
+                layout="column">
                 <md-content>
                     <md-list class="md-dense">
                         <md-list-item>
                             <md-button class="md-fab md-mini"
-                                       aria-label="Image"
-                                       ng-click="showImage=!showImage">
+                                aria-label="Image"
+                                ng-click="showImage=!showImage">
                                 <md-icon md-svg-src="img/icons/ic_crop_original_black_24px.svg"></md-icon>
                             </md-button>
                         </md-list-item>
                         <md-divider></md-divider>
                         <md-list-item ng-repeat="n in numeros">
                             <div class="md-list-item-text">
-                                <md-button ng-click="cambiarPregunta(n)" style="min-width: 1%;"><b>{{n}}</b></md-button>
+                                <md-button ng-click="cambiarPregunta(n)"
+                                    style="min-width: 1%;"><b>{{n}}</b></md-button>
                             </div>
                             <md-divider></md-divider>
                         </md-list-item>
@@ -28,6 +29,12 @@
                 </md-content>
             </div>
             <div flex>
+                <md-card layout="column" layout-align="center center" ng-if="showImage">
+                    <md-card-header-text><span class="md-title">Modelo del mundo</span></md-card-header-text>
+
+                    <img ng-src="{{examen.modeloMundo}}">
+                </md-card>
+
                 <md-toolbar md-scroll-shrink>
                     <div class="md-toolbar-tools">
                         <h3>
@@ -40,10 +47,7 @@
                     </div>
                 </md-toolbar>
                 <md-content style="padding: 15px;">
-                    <div ng-if="showImage">
-                        <h3>Modelo del mundo</h3>
-                        <img ng-src="{{examen.modeloMundo}}">
-                    </div>
+
                     <h3>Enunciado</h3>
                     <span>{{pregunta.enunciado}}</span>
                 </md-content>
@@ -80,29 +84,39 @@
                         ng-click="undoRespuesta($event)">
                         <md-icon md-svg-src="img/icons/ic_undo_black_24px.svg"></md-icon>
                     </md-button>
-                    <div flex="20" layout="row" layout-align="center">
-                        <md-button class="md-raised md-primary" ng-if="!compiling" ng-click="compilar()">Compilar</md-button>
+                    <div flex="20"
+                        layout="row"
+                        layout-align="center">
+                        <md-button class="md-raised md-primary"
+                            ng-if="!compiling"
+                            ng-click="compilar()">Compilar</md-button>
 
-                         <md-progress-circular md-mode="indeterminate" ng-if="compiling"></md-progress-circular>
-                         <md-icon ng-show="!compiling && consoleLog.length===0" md-svg-src="img/icons/correct.svg"></md-icon>
-                         <md-icon ng-show="!compiling && consoleLog.length!==0" md-svg-src="img/icons/wrong.svg"></md-icon>
+                        <md-progress-circular md-mode="indeterminate"
+                            ng-if="compiling"></md-progress-circular>
+                        <md-icon ng-show="!compiling && consoleLog.length===0"
+                            md-svg-src="img/icons/correct.svg"></md-icon>
+                        <md-icon ng-show="!compiling && consoleLog.length!==0"
+                            md-svg-src="img/icons/wrong.svg"></md-icon>
                     </div>
 
                     <md-button class="md-raised"
                         ng-click="enviar()">Enviar</md-button>
                 </div>
             </md-content>
-            <md-toolbar md-scroll-shrink>
-                <div class="md-toolbar-tools">
-                    <h3>
+            <md-content ng-show="consoleLog.length!==0">
+                <md-toolbar md-scroll-shrink>
+                    <div class="md-toolbar-tools">
+                        <h3>
                         <span>Resultado de compilación</span>
                     </h3>
-                </div>
-            </md-toolbar>
+                    </div>
+                </md-toolbar>
 
-            <md-content>
-                <div dir-auto-scroll style="width:100%;overflow: scroll;background: black;padding:8px;">
-                    <div ng-repeat="lineAndType in consoleLog track by $index" ng-class="lineAndType.tipo">
+
+                <div dir-auto-scroll
+                    style="width:100%;overflow: scroll;background: black;padding:8px;">
+                    <div ng-repeat="lineAndType in consoleLog track by $index"
+                        ng-class="lineAndType.tipo">
                         <div style="margin-left: 5px;">
                             {{lineAndType.linea}}
                         </div>
