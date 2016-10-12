@@ -5,7 +5,7 @@ public class RentaDeVehiculos {
 	public final static int NUM_SUCURSALES = 5;
 	private double [] gananciasSucursales;
 
-Esqueleto Pregunta 1
+int i = 0;
 
 	public RentaDeVehiculos ()
 	{

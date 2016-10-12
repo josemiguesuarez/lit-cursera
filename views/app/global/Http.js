@@ -8,8 +8,8 @@
          * Url del servidor
          * @type {string}
          */
-        this.serverUrl = 'http://localhost:8080/api/';
-        //this.serverUrl = '/api/';
+        //this.serverUrl = 'http://localhost:8080/api/';
+        this.serverUrl = '/api/';
         /**
          * Método encargado de hacer peticiones HTTP Post
          * @param relativRoute Ruta relativa a donde realizar la petición

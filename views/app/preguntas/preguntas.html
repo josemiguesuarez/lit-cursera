@@ -3,6 +3,7 @@
     <section resizable
         r-directions="['right']"
         r-flex="true"
+        r-Width="400"
         style="margin: 8px;">
         <div layout="row">
             <div layout-align="top center"
@@ -79,8 +80,14 @@
                         ng-click="undoRespuesta($event)">
                         <md-icon md-svg-src="img/icons/ic_undo_black_24px.svg"></md-icon>
                     </md-button>
-                    <md-button class="md-raised md-primary" ng-if="!compiling" ng-click="compilar()">Compilar</md-button>
-                     <md-progress-circular md-mode="indeterminate" ng-if="compiling"></md-progress-circular>
+                    <div flex="20" layout="row" layout-align="center">
+                        <md-button class="md-raised md-primary" ng-if="!compiling" ng-click="compilar()">Compilar</md-button>
+
+                         <md-progress-circular md-mode="indeterminate" ng-if="compiling"></md-progress-circular>
+                         <md-icon ng-show="!compiling && consoleLog.length===0" md-svg-src="img/icons/correct.svg"></md-icon>
+                         <md-icon ng-show="!compiling && consoleLog.length!==0" md-svg-src="img/icons/wrong.svg"></md-icon>
+                    </div>
+
                     <md-button class="md-raised"
                         ng-click="enviar()">Enviar</md-button>
                 </div>
@@ -92,6 +99,7 @@
                     </h3>
                 </div>
             </md-toolbar>
+
             <md-content>
                 <div dir-auto-scroll style="width:100%;overflow: scroll;background: black;padding:8px;">
                     <div ng-repeat="lineAndType in consoleLog track by $index" ng-class="lineAndType.tipo">
