@@ -5,14 +5,7 @@ public class RentaDeVehiculos {
 	public final static int NUM_SUCURSALES = 5;
 	private double [] gananciasSucursales;
 
-public double darGananciasAcomuladasRenta()
-	{
-		double gananciasAcomuladas = 0.0;
-		for (int i = 0; i < gananciasSucursales.length; i++) {
-			gananciasAcomuladas += gananciasSucursales[i];
-		}
-		return gananciasAcomuladas;
-	}
+Esqueleto Pregunta 1
 
 	public RentaDeVehiculos ()
 	{

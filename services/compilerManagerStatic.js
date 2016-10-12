@@ -11,7 +11,7 @@ module.exports = function(TEMP_DIR){
 	 * @property JAVA_FILE_NAME
 	 * @type {String}
 	 */
-	var JAVA_FILE_NAME = "Vehiculo.java";
+	var JAVA_FILE_NAME = "RentaDeVehiculos.java";
 
 
     function compile (javaText){

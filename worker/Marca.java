@@ -1,15 +1,33 @@
 package solucion;
 
-public class Vehiculo {
-	private int kilometrosRecorridos;
+public class RentaDeVehiculos {
 
-	public void inicializar()
+	public final static int NUM_SUCURSALES = 5;
+	private double [] gananciasSucursales;
+
+    public double darGananciasAcomuladasRenta()
 	{
-		kilometrosRecorridos = 5;
+		double gananciasAcomuladas = 0.0;
+		for (int i = 0; i < gananciasSucursales.length; i++) {
+			gananciasAcomuladas += gananciasSucursales[i];
+		}
+		return gananciasAcomuladas;
 	}
 
-	public int darKilometrosRecorridos ()
+	public RentaDeVehiculos ()
 	{
-		return kilometrosRecorridos;
+		gananciasSucursales = new double [NUM_SUCURSALES];
+	}
+
+	public boolean estanLasGananciasPorEncimaDeLaMeta( double meta)
+	{
+		return darGananciasAcomuladasRenta() > meta;
+	}
+
+
+
+	public void registrarGananciasSucursal ( int idSucursal, double ganancias)
+	{
+		gananciasSucursales[idSucursal] = ganancias;
 	}
 }

@@ -55,12 +55,12 @@ router.post('/calificar', function(req, res, next) {
     }).then(function(response){
         if(response.stderr && response.stderr !== "" || response.error && response.error !== ""){
             var resp = {
-                nota: 1.5,
+                nota: 0,
                 retroalimentacion: ["El código enviado no compila"]
             };
             return resp;
         } else {
-            return junitwrapper.runTest("test.TestVehiculo").then(function(respuesta){
+            return junitwrapper.runTest("test.TestRentaDeVehiculos").then(function(respuesta){
                 console.log("respuesta calificador:", respuesta);
 
                 var mensajesRetroalimentacion = [];
@@ -73,7 +73,7 @@ router.post('/calificar', function(req, res, next) {
                     }
                 });
                 var resp = {
-                    nota: conteoCorrectas*5/respuesta.length,
+                    nota: Math.round(conteoCorrectas*500/respuesta.length)/100,
                     retroalimentacion: mensajesRetroalimentacion
                 };
                 return resp;

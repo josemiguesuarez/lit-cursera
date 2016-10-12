@@ -1,22 +1,41 @@
- <md-toolbar md-scroll-shrink>
-    <div class="md-toolbar-tools" layout="row">
+<md-toolbar md-scroll-shrink>
+    <div class="md-toolbar-tools"
+        layout="row">
         <h3>
-            <span>Pregunta {{calificacion.pregunta.Examen_pregunta.numero}}</span>
+            <span>Pregunta</span>
         </h3>
         <span flex></span>
-        <h3 flex="10">
-            {{calificacion.nota}}
+        <h3 flex="20">
+            Calificación
         </h3>
-        <h3 flex="10">
-            {{calificacion.pregunta.Examen_pregunta.peso}}%
+        <h3 flex="20">
+            Porcentaje
         </h3>
     </div>
+
 </md-toolbar>
-<md-content flex style="height: 450px;">
-    <md-subheader><h3>Retroalimentación</h3></md-subheader>
-    <md-list>
-        <md-list-item class="md-3-line" ng-repeat="punto in calificacion.retroalimentacion" ng-click="null">
-            <div class="md-list-item-text" layout="column">
+<md-content flex>
+    <md-list flex>
+        <md-list-item class="md-3-line" ng-click="showRetroalimentacion = !showRetroalimentacion">
+            <h3>
+            <span>Pregunta {{calificacion.pregunta.Examen_pregunta.numero}}</span>
+            </h3>
+            <span flex></span>
+            <h3 flex="20">{{calificacion.nota}} de 5</h3>
+            <h3 flex="20">{{calificacion.pregunta.Examen_pregunta.peso}}%</h3>
+        </md-list-item>
+    </md-list>
+</md-content>
+<md-content flex
+    style="height: 450px;" ng-show="showRetroalimentacion">
+    <md-subheader>
+        <h3>Retroalimentación</h3></md-subheader>
+    <md-list class="md-dense">
+        <md-list-item class="md-1-line"
+            ng-repeat="punto in calificacion.retroalimentacion"
+            >
+            <div class="md-list-item-text"
+                layout="column">
                 <p>{{punto}}</p>
             </div>
         </md-list-item>

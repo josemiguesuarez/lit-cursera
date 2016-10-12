@@ -17,7 +17,7 @@ module.exports = function(TEMP_DIR){
 	 * @property JAVA_FILE_NAME
 	 * @type {String}
 	 */
-	var JAVA_FILE_NAME = "Vehiculo.java";
+	var JAVA_FILE_NAME = "RentaDeVehiculos.java";
 
     /**
      * Contador que permite identificar la solicitud en conjunto con el timepo en el que se realizó.
