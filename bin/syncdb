@@ -41,24 +41,27 @@ function generateData() {
         });
     }).then(function() {
         return db.Examen.create({
-            nombre: "Examen 1",
-            enunciado: "Enunciado 1",
-            modeloMundo: "http://i.imgur.com/06cMtIA.png",
-            descripcion: "Este es el examen 1"
+            nombre: "Examen 1 de prueba. Arreglos fijos",
+            enunciado: "Se tiene una renta de vehículos con una cantidad constante de sucursales. Cada una de las sucursales" +
+            "tiene un número de ganancias y se desean llevar a cabo 3 operaciones. La primera es determinar si las ganacias de " +
+            "todas las sucursales es mayor a cierta meta dada. La segunda es dar las ganancias acumuladas de la renta de todas las" +
+            " sucursales. La tercera es registrar las ganancias de una sucursal.",
+            modeloMundo: "http://i.imgur.com/HqYm94L.png",
+            descripcion: "En el presente parcial de prueba número 1, se evaluarán los conocimientos del estudiante en el manejo" +
+            "de arreglos de tamaño fijo. El parcial consta de solo una pregunta con única respuesta. La nota más baja que puede" +
+            "obtener el estudiante es de 1.5."
         });
     }).then(function(examenCreatedP) {
         examenCreated = examenCreatedP;
         var promises = [];
-        for (var i = 1; i <= 5; i++) {
-            promises.push(examenCreated.createPregunta({
-                enunciado: "Enunciado pregunta " + i,
-                esqueleto: "Esqueleto Pregunta " + i,
-                FragmentoCodigoId: 1
-            }, {
-                peso: 20,
-                numero: i
-            }));
-        }
+        promises.push(examenCreated.createPregunta({
+            enunciado: "Escriba un método que retorne el acumulado de todas las sucursales de la renta de vehículos" + i,
+            esqueleto: "Esqueleto Pregunta " + i,
+            FragmentoCodigoId: 1
+        }, {
+            peso: 100,
+            numero: 1
+        }));
         return Promise.all(promises);
     }).then(function() {
 		//Retorna las preguntas del exámen sin tener que buscar el exámen en la base de datos.
