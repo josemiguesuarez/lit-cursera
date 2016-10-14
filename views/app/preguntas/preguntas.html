@@ -31,7 +31,9 @@
             <div flex>
                 <md-card layout="column" layout-align="center center" ng-if="showImage">
                     <md-card-header-text><span class="md-title">Modelo del mundo</span></md-card-header-text>
-
+                    <md-card-content>
+                        <p>{{examen.descripcion}}</p>
+                    </md-card-content>
                     <img ng-src="{{examen.modeloMundo}}">
                 </md-card>
 
@@ -81,10 +83,11 @@
                     <span flex></span>
                     <md-button class="md-fab md-mini"
                         aria-label="Undo"
-                        ng-click="undoRespuesta($event)">
+                        ng-click="undoRespuesta($event)"
+                        flex="none">
                         <md-icon md-svg-src="img/icons/ic_undo_black_24px.svg"></md-icon>
                     </md-button>
-                    <div flex="20"
+                    <div
                         layout="row"
                         layout-align="center">
                         <md-button class="md-raised md-primary"
