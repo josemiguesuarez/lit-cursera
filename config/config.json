@@ -1,68 +1,71 @@
 {
-  "development": {
-    "username": "cupiexamenes",
-    "password": "cupiexamenes",
-    "database": "cupiexamenes",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "timezone":"America/Bogota",
-    "logging":false,
-    "server":{
-      "http":{
-        "port": 8080,
-        "redirect": false
-      },
-      "https":{
-        "port": 8081
-      },
-      "allowCORS": true
+    "development": {
+        "username": "cupiexamenes",
+        "password": "cupiexamenes",
+        "database": "cupiexamenes",
+        "host": "127.0.0.1",
+        "dialect": "postgres",
+        "timezone": "America/Bogota",
+        "logging": false,
+        "server": {
+            "http": {
+                "port": 8080,
+                "redirect": false
+            },
+            "https": {
+                "port": 8081
+            },
+            "allowCORS": true
+        },
+        "session": {
+            "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
+        },
+        "databse": true
     },
-    "session":{
-      "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
-    }
-  },
-  "test": {
-    "username": "user",
-    "password": "pass",
-    "database": "database",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "timezone":"America/Bogota",
-    "logging":false,
-    "server":{
-      "http":{
-        "port": 8080,
-        "redirect": true
-      },
-      "https":{
-        "port": 8081
-      },
-      "allowCORS": false
+    "test": {
+        "username": "user",
+        "password": "pass",
+        "database": "database",
+        "host": "127.0.0.1",
+        "dialect": "postgres",
+        "timezone": "America/Bogota",
+        "logging": false,
+        "server": {
+            "http": {
+                "port": 8080,
+                "redirect": true
+            },
+            "https": {
+                "port": 8081
+            },
+            "allowCORS": false
+        },
+        "session": {
+            "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
+        },
+        "databse": true
     },
-    "session":{
-      "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
+    "production": {
+        "username": "user",
+        "password": "pass",
+        "database": "database",
+        "host": "127.0.0.1",
+        "dialect": "postgres",
+        "timezone": "America/Bogota",
+        "logging": false,
+        "server": {
+            "http": {
+                "port": 8080,
+                "redirect": true
+            },
+            "https": {
+                "port": 8081
+            },
+            "allowCORS": false
+        },
+        "session": {
+            "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
+        },
+        "databse": false
     }
-  },
-  "production": {
-    "username": "user",
-    "password": "pass",
-    "database": "database",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "timezone":"America/Bogota",
-    "logging":false,
-    "server":{
-      "http":{
-        "port": 8080,
-        "redirect": true
-      },
-      "https":{
-        "port": 8081
-      },
-      "allowCORS": false
-    },
-    "session":{
-      "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
-    }
-  }
 }

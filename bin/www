@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-var env = process.env.NODE_ENV || "development";
 var config = require('../config/');
 var debug = require('debug')('cupireservas');
 var express = require('express');
@@ -16,35 +15,40 @@ var httpsPort = config.server.https.port;
 
 calificador.cargarSolucion();
 
-db.sequelize.sync().then(function() {
-	/* listen (start app with node server.js) ====================================== */
-  if(!process.env.PORT){
-    var credentials = {
-    	key: config.server.https.privateKey,
-    	cert: config.server.https.certificate
-    };
+if (config.databse)
+    db.sequelize.sync().then(runserver);
+else
+    runserver();
 
-  	var httpsServer = https.createServer(credentials, app);
-  	httpsServer.listen(httpsPort, function() {
-  		console.log("https server listen on ", httpsPort, "port");
-  	});
-  }
+function runserver() {
+    /* listen (start app with node server.js) ====================================== */
+    if (!process.env.PORT) {
+        var credentials = {
+            key: config.server.https.privateKey,
+            cert: config.server.https.certificate
+        };
+
+        var httpsServer = https.createServer(credentials, app);
+        httpsServer.listen(httpsPort, function() {
+            console.log("https server listen on ", httpsPort, "port");
+        });
+    }
 
 
-	// Se crea una app de express para redireccionar el tráfico http a https.
-	var httpServer;
-  var app;
-	if(config.server.http.redirect){
-		app = express();
-		app.all('*', function(req, res) {
-			return res.redirect("https://" + req.headers.host + req.url);
-		});
-	} else {
-		app = require('../app');
-	}
-  httpServer = http.createServer(app);
-  httpServer.listen(httpPort, function() {
-    console.log("http server listen on", httpPort, "port");
-  });
+    // Se crea una app de express para redireccionar el tráfico http a https.
+    var httpServer;
+    var app;
+    if (config.server.http.redirect) {
+        app = express();
+        app.all('*', function(req, res) {
+            return res.redirect("https://" + req.headers.host + req.url);
+        });
+    } else {
+        app = require('../app');
+    }
+    httpServer = http.createServer(app);
+    httpServer.listen(httpPort, function() {
+        console.log("http server listen on", httpPort, "port");
+    });
 
-});
+}
