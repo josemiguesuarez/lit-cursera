@@ -55,11 +55,11 @@
         "logging": false,
         "server": {
             "http": {
-                "port": 8080,
+                "port": 8081,
                 "redirect": true
             },
             "https": {
-                "port": 8081
+                "port": 8080
             },
             "allowCORS": false
         },
