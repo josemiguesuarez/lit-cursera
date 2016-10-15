@@ -12,6 +12,8 @@ var Promise = require('bluebird');
 var httpPort = process.env.PORT || config.server.http.port;
 var httpsPort = config.server.https.port;
 
+var app;
+
 
 calificador.cargarSolucion();
 
@@ -27,7 +29,7 @@ function runserver() {
             key: config.server.https.privateKey,
             cert: config.server.https.certificate
         };
-
+		app = require('../app');
         var httpsServer = https.createServer(credentials, app);
         httpsServer.listen(httpsPort, function() {
             console.log("https server listen on ", httpsPort, "port");
@@ -37,7 +39,7 @@ function runserver() {
 
     // Se crea una app de express para redireccionar el tráfico http a https.
     var httpServer;
-    var app;
+
     if (config.server.http.redirect) {
         app = express();
         app.all('*', function(req, res) {

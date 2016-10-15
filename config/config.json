@@ -20,7 +20,7 @@
         "session": {
             "secret": "1U28s0Gjisj27a8Shfhuihdfnjcnudi)L"
         },
-        "databse": true
+        "databse": false
     },
     "test": {
         "username": "user",
