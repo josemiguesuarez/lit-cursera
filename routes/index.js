@@ -67,8 +67,7 @@ router.post('/access', function(req, res) {
             return false;
         }
         res.redirect("/");
-        console.log(provider.outcome_service.supports_result_data('text'));
-        provider.outcome_service.send_replace_result_with_text(0.5, 'Hello, world!', function(err, result) {
+        provider.outcome_service.send_replace_result(0.5, function(err, result) {
             console.log(err, result);
             console.log(result);
         });
